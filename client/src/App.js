@@ -22,36 +22,67 @@ function App() {
         console.log(data)
       }
     )
-    fetch("/user/henry").then( // fetch userData
+  }, [])
+
+
+  const fetchUser = (event) => {
+    event.preventDefault();
+    setUser(usernameInputField)
+    console.log(`Account name entered was: ${usernameInputField}`)
+    fetch(`/user/${usernameInputField}`).then( // fetch userData
       res => res.json()
     ).then(
       data => {
         setUserData(data)
-        console.log(data)
+        console.log("data", data)
       }
     )
-  }, [])
+    showData();
+    console.log(jsonStr)
+  }
 
-  const applyUsername = (event) => {
-    event.preventDefault()
-    //setUser(usernameInputField)
-    console.log("Name entered: ", user)
+var jsonStr;
+  const showData = () => {
+    jsonStr = JSON.stringify(userData)  // THE OBJECT STRINGIFIED
+    var regeStr = '', // A EMPTY STRING TO EVENTUALLY HOLD THE FORMATTED STRINGIFIED OBJECT
+    f = {
+            brace: 0
+        }; // AN OBJECT FOR TRACKING INCREMENTS/DECREMENTS,
+           // IN PARTICULAR CURLY BRACES (OTHER PROPERTIES COULD BE ADDED)
+
+regeStr = jsonStr.replace(/({|}[,]*|[^{}:]+:[^{}:,]*[,{]*)/g, function (m, p1) {
+var rtnFn = function() {
+        return '<div style="text-indent: ' + (f['brace'] * 20) + 'px;">' + p1 + '</div>';
+    },
+    rtnStr = 0;
+    if (p1.lastIndexOf('{') === (p1.length - 1)) {
+        rtnStr = rtnFn();
+        f['brace'] += 1;
+    } else if (p1.indexOf('}') === 0) {
+         f['brace'] -= 1;
+        rtnStr = rtnFn();
+    } else {
+        rtnStr = rtnFn();
+    }
+    return rtnStr;
+});
+
+  document.getElementById('datadiv').innerHTML = jsonStr
   }
 
   return (
     <div>
       
-      
-      <form>
-        <label>Enter account name:
-          <input
-            type="text" 
-            value={usernameInputField}
-            onChange={(e) => setUsernameInputField(e.target.value)}
-          />
-        </label>
-        <input type="submit" />
-      </form>
+      <form onSubmit={fetchUser}>
+      <label>Enter account name:
+        <input 
+          type="text" 
+          value={usernameInputField}
+          onChange={(e) => setUsernameInputField(e.target.value)}
+        />
+      </label>
+      <input type="submit" />
+    </form>
 
       <div>
         <b>USERNAME: </b>
@@ -61,8 +92,11 @@ function App() {
       <div>
         <b>TIKTOK DATA</b>
         <p>
-          {userData.username}
+          {userData.nickname}
         </p>
+        <div id = 'datadiv'>
+          {jsonStr}
+        </div>
       </div>
       
       <div>

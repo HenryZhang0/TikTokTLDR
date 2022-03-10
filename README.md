@@ -5,3 +5,6 @@ Start backend
 Start frontend
 `cd client`
 `npm start`
+
+Setup
+

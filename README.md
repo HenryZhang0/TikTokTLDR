@@ -1,2 +1,6 @@
 # tokk
-d
+Start backend
+`py server`
+
+Start frontend
+`npm start`

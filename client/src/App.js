@@ -30,18 +30,19 @@ function App() {
     setUser(usernameInputField)
     console.log(`Account name entered was: ${usernameInputField}`)
     fetch(`/user/${usernameInputField}`).then( // fetch userData
-      res => res.json()
+      res => res.json() 
     ).then(
       data => {
         setUserData(data)
         console.log("data", data)
       }
+    ).then(
+      showData()
+      //console.log(jsonStr)
     )
-    showData();
-    console.log(jsonStr)
   }
 
-var jsonStr;
+  var jsonStr;
   const showData = () => {
     jsonStr = JSON.stringify(userData)  // THE OBJECT STRINGIFIED
     var regeStr = '', // A EMPTY STRING TO EVENTUALLY HOLD THE FORMATTED STRINGIFIED OBJECT

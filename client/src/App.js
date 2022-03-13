@@ -104,7 +104,9 @@ function App() {
         <b>TIKTOK DATA</b>
         <p>{userData.username}</p>
         <img src = {userData.profilePicture} alt="Profile Picture" width="178" height="178"></img>
+        <div id = "profilelink">
         <p><a href= {"https://www.tiktok.com/@" + String(userData.id)} target="_blank">TikTok Profile</a></p>
+        </div>
         <div id="datadiv">{jsonStr}</div>
       </div>
 

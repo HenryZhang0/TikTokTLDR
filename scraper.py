@@ -22,7 +22,7 @@ def scrape(id):
         parameters['video_author'] = video.author.username
         for hashtag in video.hashtags:
             parameters['hashtags'].append(hashtag.name)
-            if (hashtag.name != 'fyp'):
+            if (not ("fyp" in hashtag.name or "foryou" in hashtag.name)):
                 hashtags.append(hashtag.name)
         liked_videos.append(parameters)
     data['likedVideos'] = liked_videos

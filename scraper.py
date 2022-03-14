@@ -22,15 +22,15 @@ def scrape(id):
         parameters['video_author'] = video.author.username
         for hashtag in video.hashtags:
             parameters['hashtags'].append(hashtag.name)
-            liked_videos.append(parameters)
-        if (hashtag.name != 'fyp'):
-            hashtags.append(hashtag.name)
+            if (hashtag.name != 'fyp'):
+                hashtags.append(hashtag.name)
+        liked_videos.append(parameters)
     data['likedVideos'] = liked_videos
 
     c = Counter(hashtags)
-    print (c.most_common(10))
+    print ('most common', c.most_common(20))
 
-    print(hashtags)
+    # print('hashtags', hashtags)
     return data
 
 # DATA SENDING TO FRONTEND

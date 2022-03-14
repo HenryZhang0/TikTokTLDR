@@ -6,7 +6,6 @@ def scrape(id):
     user = api.user(username=id)
     #for liked_video in user.liked(username='public_likes'):
     #    print(liked_video)
-
     userdata = user.as_dict
     # data
     data = {}
@@ -15,7 +14,7 @@ def scrape(id):
     data['openFavorite'] = userdata['openFavorite']
     data['profilePicture'] = userdata['avatarLarger']
     liked_videos = list()
-    for video in user.liked(username = 'public_likes', count = 10):
+    for video in user.liked(username = 'public_likes', count = 1000):
         parameters = {'hashtags' : []}
         parameters['video_id'] = video.id
         #print(video.author)

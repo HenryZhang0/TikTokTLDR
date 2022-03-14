@@ -23,9 +23,9 @@ def scrape(id):
         parameters['video_author'] = video.author.username
         for hashtag in video.hashtags:
             parameters['hashtags'].append(hashtag.name)
-            hashtags.append(hashtag.name)
-        if (hashtag.name != 'fyp'):
             liked_videos.append(parameters)
+        if (hashtag.name != 'fyp'):
+            hashtags.append(hashtag.name)
     data['likedVideos'] = liked_videos
 
     c = Counter(hashtags)

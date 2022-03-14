@@ -29,7 +29,7 @@ def scrape(id):
 
     c = Counter(hashtags)
     print ('most common', c.most_common(20))
-
+    data['most_common_hashtags'] = c.most_common(20);
     # print('hashtags', hashtags)
     return data
 

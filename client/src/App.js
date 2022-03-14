@@ -106,7 +106,7 @@ function App() {
         {typeof userData.most_common_hashtags === "undefined" ? (
           <p>Loading...</p>
           ) : (
-            <div>
+            <div> 
               <p>{userData.username}</p>
               <img src = {userData.profilePicture} alt="Profile Picture" width="178" height="178"></img>
               <div id = "profilelink">

@@ -1,5 +1,5 @@
 from TikTokApi import TikTokApi
-
+from collections import Counter
 
 def scrape(id):
     api = TikTokApi(custom_verify_fp="verify_kur2tu8a_7SYVDTY2_3aWr_4LrQ_9vZb_ccDNB60S5qVC")
@@ -8,6 +8,7 @@ def scrape(id):
     #    print(liked_video)
 
     userdata = user.as_dict
+    hashtags = []
     # data
     data = {}
     data['id'] = userdata["id"]
@@ -15,15 +16,21 @@ def scrape(id):
     data['openFavorite'] = userdata['openFavorite']
     data['profilePicture'] = userdata['avatarLarger']
     liked_videos = list()
-    for video in user.liked(username = 'public_likes', count = 10):
+    for video in user.liked(username = 'public_likes', count = 500):
         parameters = {'hashtags' : []}
         parameters['video_id'] = video.id
         #print(video.author)
         parameters['video_author'] = video.author.username
         for hashtag in video.hashtags:
             parameters['hashtags'].append(hashtag.name)
+            hashtags.append(hashtag.name)
         liked_videos.append(parameters)
     data['likedVideos'] = liked_videos
+
+    c = Counter(hashtags)
+    print (c.most_common(10))
+
+    print(hashtags)
     return data
 
 # DATA SENDING TO FRONTEND

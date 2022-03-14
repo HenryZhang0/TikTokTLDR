@@ -6,7 +6,7 @@ def scrape(id):
     user = api.user(username=id)
     #for liked_video in user.liked(username='public_likes'):
     #    print(liked_video)
-
+    # hi
     userdata = user.as_dict
     hashtags = []
     # data
@@ -24,7 +24,8 @@ def scrape(id):
         for hashtag in video.hashtags:
             parameters['hashtags'].append(hashtag.name)
             hashtags.append(hashtag.name)
-        liked_videos.append(parameters)
+        if (hashtag.name != 'fyp'):
+            liked_videos.append(parameters)
     data['likedVideos'] = liked_videos
 
     c = Counter(hashtags)

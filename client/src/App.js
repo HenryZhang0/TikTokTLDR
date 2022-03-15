@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import Search from './components/Search'
+import Panel from './components/Panel'
+
 
 function App() {
   // VARIABLES
   const [data, setData] = useState([{}]);
   const [userData, setUserData] = useState([{}]);
   const [user, setUser] = useState("");
+  const [invisible, setInvisible] = useState(false);
 
   // UI variables
   const [usernameInputField, setUsernameInputField] = useState("");
@@ -34,56 +38,22 @@ function App() {
       .then((data) => {
         setUserData(data);
         console.log("data", data);
-        showData(data);
       })
-      .then
-      //console.log(jsonStr)
-      ();
   };
 
-  // this stuff shows the json data on the page
-  var jsonStr;
-  const showData = (dat) => {
-    console.log("updating status panel");
-    jsonStr = JSON.stringify(dat); // THE OBJECT STRINGIFIED
-    var regeStr = "", // A EMPTY STRING TO EVENTUALLY HOLD THE FORMATTED STRINGIFIED OBJECT
-      f = {
-        brace: 0,
-      }; // AN OBJECT FOR TRACKING INCREMENTS/DECREMENTS,
-    // IN PARTICULAR CURLY BRACES (OTHER PROPERTIES COULD BE ADDED)
 
-    regeStr = jsonStr.replace(
-      /({|}[,]*|[^{}:]+:[^{}:,]*[,{]*)/g,
-      function (m, p1) {
-        var rtnFn = function () {
-            return (
-              '<div style="text-indent: ' +
-              f["brace"] * 20 +
-              'px;">' +
-              p1 +
-              "</div>"
-            );
-          },
-          rtnStr = 0;
-        if (p1.lastIndexOf("{") === p1.length - 1) {
-          rtnStr = rtnFn();
-          f["brace"] += 1;
-        } else if (p1.indexOf("}") === 0) {
-          f["brace"] -= 1;
-          rtnStr = rtnFn();
-        } else {
-          rtnStr = rtnFn();
-        }
-        return rtnStr;
-      }
-    );
 
-    document.getElementById("datadiv").innerHTML = jsonStr;
-  };
+  //styles
+  
 
   return (
     <div>
-      <form onSubmit={fetchUser}>
+      <div style = {bannerStyle}>
+        <img src = "https://pngfolio.com/images/all_img/copy/1631457787tiktok-logo-png_2.png" alt = "kms" height="178"></img>
+      </div>
+      <Search onsubmit = {fetchUser} usernameInputField = {usernameInputField} setUsernameInputField = {setUsernameInputField}/>
+      
+      {/* <form onSubmit={fetchUser}>
         <label>
           Enter account name:
           <input
@@ -93,34 +63,23 @@ function App() {
           />
         </label>
         <input type="submit" />
-      </form>
+      </form> */}
 
       <div>
         <b>USERNAME: </b>
         <p>{user}</p>
       </div>
 
-      <div>
-        <b>TIKTOK DATA</b>
+      {invisible ? (
+        <div></div>
+      ) : (
+        <div className="panel-home">
+          <Panel userData = {userData}></Panel>
+          <Panel userData = {userData}></Panel>
+
+        </div>
         
-        {typeof userData.most_common_hashtags === "undefined" ? (
-          <p>Loading...</p>
-          ) : (
-            <div> 
-              <p>{userData.username}</p>
-              <img src = {userData.profilePicture} alt="Profile Picture" width="178" height="178"></img>
-              <div id = "profilelink">
-                <p><a href= {"https://www.tiktok.com/@" + String(userData.id)} target="_blank">TikTok Profile</a></p>
-              </div>
-              <b>MOST COMMON HASHTAGS</b>
-              <div>
-                {userData.most_common_hashtags.map((hasht, i) => <p key={i}>{hasht[0]} - {hasht[1]}</p>)}
-              </div>
-            </div>
-        )}
-        <b>RAW DATA</b>
-        <div id="datadiv">{jsonStr}</div>
-      </div>
+      )}
 
       <div>
         <b>PROGRAMMERS (this is an example)</b>
@@ -132,6 +91,15 @@ function App() {
       </div>
     </div>
   );
+}
+
+// Styles
+const bannerStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  color: 'red',
 }
 
 export default App;

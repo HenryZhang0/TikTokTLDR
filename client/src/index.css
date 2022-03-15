@@ -1,0 +1,18 @@
+html {
+    overflow-x: hidden;
+}
+
+body {
+    background-color: rgb(233, 230, 230);
+}
+
+.textBox::placeholder {
+    /*color: green;*/
+    font-family: comic sans ms;
+    font-size: large;
+}
+
+.panel-home {
+    display: flex;
+    justify-content: center;
+}

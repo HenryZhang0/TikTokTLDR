@@ -15,7 +15,7 @@ def scrape(id):
     data['openFavorite'] = userdata['openFavorite']
     data['profilePicture'] = userdata['avatarLarger']
     liked_videos = list()
-    for video in user.liked(username = 'public_likes', count = 1000):
+    for video in user.liked(username = 'public_likes', count = 50):
         parameters = {'hashtags' : []}
         parameters['video_id'] = video.id
         #print(video.author)
@@ -28,8 +28,8 @@ def scrape(id):
     data['likedVideos'] = liked_videos
 
     c = Counter(hashtags)
-    print ('most common', c.most_common(20))
-    data['most_common_hashtags'] = c.most_common(20);
+    print ('most common', c.most_common(10))
+    data['most_common_hashtags'] = c.most_common(10);
     # print('hashtags', hashtags)
     return data
 

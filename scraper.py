@@ -8,6 +8,7 @@ def scrape(id):
     #    print(liked_video)
     userdata = user.as_dict
     hashtags = []
+    peepoo = ["fyp", "foryou", "xyzbca"]
     # data
     data = {}
     data['id'] = userdata["id"]
@@ -15,15 +16,20 @@ def scrape(id):
     data['openFavorite'] = userdata['openFavorite']
     data['profilePicture'] = userdata['avatarLarger']
     liked_videos = list()
-    for video in user.liked(username = 'public_likes', count = 50):
+    for video in user.liked(username = 'public_likes', count = 500):
         parameters = {'hashtags' : []}
         parameters['video_id'] = video.id
         #print(video.author)
         parameters['video_author'] = video.author.username
         for hashtag in video.hashtags:
             parameters['hashtags'].append(hashtag.name)
-            if (not ("fyp" in hashtag.name or "foryou" in hashtag.name)):
+            
+            # Exclude hashtags
+            if not any([a in hashtag.name for a in peepoo]):
                 hashtags.append(hashtag.name)
+
+
+            #
         liked_videos.append(parameters)
     data['likedVideos'] = liked_videos
 

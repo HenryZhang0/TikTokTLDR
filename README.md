@@ -7,4 +7,4 @@ Start frontend
 `npm start`
 
 Setup
-
+`npm install --save react-stacked-carousel`

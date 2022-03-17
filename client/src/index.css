@@ -1,18 +1,21 @@
 html {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 body {
-    background-color: rgb(233, 230, 230);
+  background-color: rgb(233, 230, 230);
 }
 
 .textBox::placeholder {
-    /*color: green;*/
-    font-family: comic sans ms;
-    font-size: large;
+  /*color: green;*/
+  font-family: comic sans ms;
+  font-size: large;
 }
 
 .panel-home {
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items:flex-start;
+    height: 600px;
 }

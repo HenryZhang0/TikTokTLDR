@@ -6,16 +6,145 @@ body {
   background-color: rgb(233, 230, 230);
 }
 
-.textBox::placeholder {
-  /*color: green;*/
-  font-family: comic sans ms;
-  font-size: large;
-}
-
 .panel-home {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items:flex-start;
     height: 600px;
+}
+
+
+
+.slider {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 1000px;
+  width: 600px;
+  border-radius: 10px;
+}
+
+.right-arrow {
+  position:absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 3rem;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+.left-arrow {
+  position:absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 3rem;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #4de8f4;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
+  height: 600px;
+  width: 400px;
+  margin: 10px;
+}
+
+.bottomBar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-self: flex-end;
+  align-items: center;
+  margin-top: auto;
+}
+
+.logo-container {
+  justify-self: flex-start;
+}
+
+.share-container {
+  justify-self: flex-end;
+}
+
+.searchBox {
+  display: flex;
+  background-color: pink;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.search {
+  width: 500px;
+  height: 40px;
+  margin: 20px auto;
+  background: #444;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  border: 1px solid #fff;
+}
+.search input {
+  width: 370px;
+  padding: 10px 5px;
+  float: left;
+  color: rgb(255, 255, 255);
+  border: 0;
+  background: transparent;
+  border-radius: 3px 0 0 3px;
+}
+.search input:focus {
+  outline: 0;
+  background: transparent;
+}
+.search button {
+  position: relative;
+  float: right;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  height: 40px;
+  width: 120px;
+  color: #fff;
+  background: transparent;
+  border-left: 1px solid #fff;
+  border-radius: 0 3px 3px 0;
+}
+.search button:hover {
+  background: #fff;
+  color: #444;
+}
+.search button:active {
+  box-shadow: 0px 0px 12px 0px #e1e1e1;
+}
+.search button:focus {
+  outline: 0;
 }

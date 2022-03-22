@@ -1,20 +1,19 @@
 const Search = ({onsubmit, usernameInputField, setUsernameInputField}) => {
   return (
-    <div className = "searchBox" style={searchBox}>
+    <div className = "searchBox" >
       <div>
-        <form onSubmit={onsubmit}>
+        <form className='search' onSubmit={onsubmit}>
           <label>            
-            <div className="inputBox" style={inputBox}>
+            <div className="inputBox" >
               <input
                 className="textBox"
                 type="text"
                 value={usernameInputField}
                 onChange={(e) => setUsernameInputField(e.target.value)}
-                style={textBar}
-                placeholder="  Enter Account Name"
+                placeholder="Enter Account Name"
               />
-              <button type="submit" style={buttonStyle}>
-                <img src="http://assets.stickpng.com/images/585e4ad1cb11b227491c3391.png" width="25" height="25"/>
+              <button type="submit" >
+                Search
               </button>
             </div>
           </label>
@@ -24,7 +23,7 @@ const Search = ({onsubmit, usernameInputField, setUsernameInputField}) => {
     </div>
   )
 }
-
+/* 
 const searchBox = {
   display: 'flex',
   flexDirection: 'column',
@@ -60,5 +59,5 @@ const buttonStyle = {
   borderRadius: '0px 10px 10px 0px',
   border: '1px solid black',
 }
-
+*/
 export default Search

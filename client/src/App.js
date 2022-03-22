@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 import Search from "./components/Search";
 import Panel from "./components/Panel";
 import { StackedCarousel } from "react-stacked-carousel";
-//import "react-stacked-carousel/dist/index.css"; 
-import "./carousel.css"
+//import "react-stacked-carousel/dist/index.css";
+import "./carousel.css";
+import { SliderData } from "./components/SliderData";
+import ImageSlider from "./components/ImageSlider";
 
 function App() {
   // VARIABLES
   const [data, setData] = useState([{}]);
   const [userData, setUserData] = useState([{}]);
   const [user, setUser] = useState("");
-  const [invisible, setInvisible] = useState(false);
+  const [invisible, setInvisible] = useState(true);
+  const [sliderData, setSliderData] = useState([]);
 
   // UI variables
   const [usernameInputField, setUsernameInputField] = useState("");
@@ -45,9 +48,69 @@ function App() {
       )
       .then((data) => {
         setUserData(data);
-        console.log("data", data);
-      });
+        //console.log("data", data);
+        createSlides();
+      })
   };
+
+  const createSlides = () => {
+    
+    console.log("creator div")
+    console.log(userData);
+    const favouriteCreatorsDiv = (
+      <div>
+        <b>Your Top Creators</b>
+            <div>
+              {userData.most_liked_users.map((hasht, i) => (
+                <div>
+                  <div>{i}.</div>
+                  <p key={i} style={{ margin: "3px 0" }}>
+                    {hasht[0]} - {hasht[1]}
+                  </p>
+                  <img
+                    src={hasht[2]}
+                    alt="Profile Picture"
+                    width="78"
+                    height="78"
+                  ></img>
+                </div>
+              ))}
+            </div>
+      </div>
+    )
+    setSliderData(sliderData => [...sliderData, favouriteCreatorsDiv]);
+    console.log("hashtags div")
+    const favouriteHashtagsDiv = (
+      <div>
+        <b>MOST COMMON HASHTAGS</b>
+            <div>
+              {userData.most_common_hashtags.map((hasht, i) => (
+                <p key={i} style={{ margin: "3px 0" }}>
+                  {hasht[0]} - {hasht[1]}
+                </p>
+              ))}
+            </div>
+      </div>
+    )
+    setSliderData(sliderData => [...sliderData, favouriteHashtagsDiv]);
+    console.log("sound div")
+    
+    const favouriteSoundsDiv = (
+      <div>
+        <b>MOST LIKED SOUNDS</b>
+        <div>
+            {userData.most_liked_sounds.map((hasht, i) => (
+            <p key={i} style={{ margin: "3px 0" }}>
+              {hasht[0]} - {hasht[1]}
+            </p>
+          ))}
+        </div> 
+      </div>
+    )
+    setSliderData(sliderData => [...sliderData, favouriteSoundsDiv]);
+    
+    setInvisible(false);
+  } 
 
   //styles
 
@@ -72,6 +135,15 @@ function App() {
         <p>{user}</p>
       </div>
 
+      {invisible? (
+        <div> notthere </div>
+      ) : (
+      <div>
+        <ImageSlider sliderData={sliderData} userData={userData} />
+      </div>
+        
+      )}
+
       {true ? (
         <div></div>
       ) : (
@@ -81,41 +153,6 @@ function App() {
         </div>
       )}
 
-      <div className="panel-home" style = {carouselStyle}>
-
-
-
-        
-        <StackedCarousel
-          autoRotate={false}
-          onCardChange={onCardChange}
-          containerClassName={"container"}
-          cardClassName="card"
-          leftButton={<button>{"<"}</button>}
-          rightButton={<button>{">"}</button>}
-        >
-          <div key={"child1"}>
-            <h2>1 Card</h2>
-            <Panel userData={userData}></Panel>
-
-          </div>
-          <div key={"child2"}>
-            <h2>2 Card</h2>
-            <Panel userData={userData}></Panel>
-          </div>
-          <div key={"child3"}>
-            <h2>3 Card</h2>
-            <Panel userData={userData}></Panel>
-
-          </div>
-          <div key={"child4"}>
-            <h2>4 Card</h2>
-            <Panel userData={userData}></Panel>
-  
-          </div>
-        </StackedCarousel>
-        
-      </div>
 
       <div>
         {true ? (
@@ -129,9 +166,7 @@ function App() {
 }
 
 // Styles
-const carouselStyle = {
-
-}
+const carouselStyle = {};
 const bannerStyle = {
   display: "flex",
   flexDirection: "column",

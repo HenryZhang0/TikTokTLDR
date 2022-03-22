@@ -3,10 +3,9 @@ import {FaTwitter, FaInstagram, FaDownload, FaLink} from 'react-icons/fa'
 const Panel = ({ backgroundColour, content }) => {
   return (
     <div className="panel">
-      <div><p>POOPOO</p></div>
-      <div>{content}</div>
+      {content}
       <div className = 'bottomBar'>
-          <div className = 'logo-container'>
+          <div className = 'logo-container, share'>
             <img src = "http://assets.stickpng.com/images/602179070ad3230004b93c28.png"
                 height = "20"
                 className = "logo" 

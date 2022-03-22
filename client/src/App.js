@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Search from "./components/Search";
 import Panel from "./components/Panel";
 import { StackedCarousel } from "react-stacked-carousel";
@@ -14,7 +14,7 @@ function App() {
   const [user, setUser] = useState("");
   const [invisible, setInvisible] = useState(true);
   const [sliderData, setSliderData] = useState([]);
-
+  const isFirstRender = useRef(true);
   // UI variables
   const [usernameInputField, setUsernameInputField] = useState("");
 
@@ -24,8 +24,16 @@ function App() {
     console.log("Card", event);
   };
 
+  // PANEL UPDAToR
+  useEffect(() => {
+    if (!isFirstRender.current) {
+      createSlides();
+    }
+  }, [userData]);
+
   // RUN ONCE
   useEffect(() => {
+    isFirstRender.current = false;
     fetch("/programmers")
       .then(
         // fetch programmers data
@@ -46,71 +54,77 @@ function App() {
         // fetch userData
         (res) => res.json()
       )
-      .then((data) => {
-        setUserData(data);
-        //console.log("data", data);
-        createSlides();
-      })
+      .then((data) => setUserData(data));
   };
 
   const createSlides = () => {
-    
-    console.log("creator div")
+    console.log("data", userData);
+    console.log("creator div");
     console.log(userData);
     const favouriteCreatorsDiv = (
-      <div>
-        <b>Your Top Creators</b>
-            <div>
-              {userData.most_liked_users.map((hasht, i) => (
-                <div>
-                  <div>{i}.</div>
-                  <p key={i} style={{ margin: "3px 0" }}>
-                    {hasht[0]} - {hasht[1]}
-                  </p>
-                  <img
-                    src={hasht[2]}
-                    alt="Profile Picture"
-                    width="78"
-                    height="78"
-                  ></img>
-                </div>
-              ))}
+      <div className="creators_panel">
+        <div className="title_text">Your Top Creators</div>
+        {userData.most_liked_users.map((hasht, i) => (
+          <div className="creator_row" key={i}>
+            <div className="rank_number">#{i + 1}</div>
+
+            <img
+              src={hasht[2]}
+              alt="Profile Picture"
+              width="78"
+              height="78"
+            ></img>
+            <div className="creater_username">
+              {hasht[0]} - {hasht[1]}
             </div>
+          </div>
+        ))}
       </div>
-    )
-    setSliderData(sliderData => [...sliderData, favouriteCreatorsDiv]);
-    console.log("hashtags div")
+    );
+    setSliderData((sliderData) => [...sliderData, favouriteCreatorsDiv]);
+    console.log("hashtags div");
     const favouriteHashtagsDiv = (
       <div>
-        <b>MOST COMMON HASHTAGS</b>
-            <div>
-              {userData.most_common_hashtags.map((hasht, i) => (
+        <div className="title_text">MOST COMMON HASHTAGS</div>
+        <div className="hashtags_panel">
+          <div>
+            {userData.most_common_hashtags.map((hasht, i) => (
+              <div className="creator_row">
+                <div className="rank_number" id="hashtag_number">
+                  #{i + 1}
+                </div>
+
                 <p key={i} style={{ margin: "3px 0" }}>
                   {hasht[0]} - {hasht[1]}
                 </p>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
+          <div className="hashtag_video">
+            
+          </div>
+        </div>
       </div>
-    )
-    setSliderData(sliderData => [...sliderData, favouriteHashtagsDiv]);
-    console.log("sound div")
-    
+    );
+    setSliderData((sliderData) => [...sliderData, favouriteHashtagsDiv]);
+    console.log("sound div");
+
     const favouriteSoundsDiv = (
       <div>
-        <b>MOST LIKED SOUNDS</b>
+        <div className="title_text">MOST LIKED SOUNDS</div>
         <div>
-            {userData.most_liked_sounds.map((hasht, i) => (
+          {userData.most_liked_sounds.map((hasht, i) => (
             <p key={i} style={{ margin: "3px 0" }}>
               {hasht[0]} - {hasht[1]}
             </p>
           ))}
-        </div> 
+        </div>
       </div>
-    )
-    setSliderData(sliderData => [...sliderData, favouriteSoundsDiv]);
-    
+    );
+    setSliderData((sliderData) => [...sliderData, favouriteSoundsDiv]);
+
     setInvisible(false);
-  } 
+  };
 
   //styles
 
@@ -135,13 +149,12 @@ function App() {
         <p>{user}</p>
       </div>
 
-      {invisible? (
+      {invisible ? (
         <div> notthere </div>
       ) : (
-      <div>
-        <ImageSlider sliderData={sliderData} userData={userData} />
-      </div>
-        
+        <div>
+          <ImageSlider sliderData={sliderData} userData={userData} />
+        </div>
       )}
 
       {true ? (
@@ -152,7 +165,6 @@ function App() {
           <Panel userData={userData}></Panel>
         </div>
       )}
-
 
       <div>
         {true ? (

@@ -17,7 +17,7 @@ const ImageSlider = ({ sliderData }) => {
     return <div>e </div>;
   }
 
-  console.log(sliderData);
+  //console.log(sliderData);
 
   return (
     <section className = "slider">

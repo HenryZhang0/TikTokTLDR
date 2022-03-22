@@ -1,3 +1,4 @@
+import json
 from TikTokApi import TikTokApi
 from collections import Counter
 import datetime
@@ -68,6 +69,12 @@ def scrape(id):
     data['most_common_hashtags'] = c.most_common(10)
     data['most_liked_sounds'] = c_sound.most_common(10)
     # print('hashtags', hashtags)
+    
+
+    # caching test users
+    #with open('taylor.json', 'w') as fp:
+    #    json.dump(data, fp,  indent=4)
+    
     return data
 
 # DATA SENDING TO FRONTEND

@@ -68,13 +68,15 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   background-color: #4de8f4;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 5px;
   height: 600px;
   width: 400px;
   margin: 10px;
+  padding: 10px;
+  padding-bottom: 0px;
 }
 
 .bottomBar {
@@ -85,6 +87,7 @@ body {
   align-self: flex-end;
   align-items: center;
   margin-top: auto;
+  background-color: transparent;
 }
 
 .logo-container {
@@ -93,6 +96,11 @@ body {
 
 .share-container {
   justify-self: flex-end;
+}
+
+.share {
+  margin: 3px;
+  padding: 2px;
 }
 
 .searchBox {
@@ -147,4 +155,53 @@ body {
 }
 .search button:focus {
   outline: 0;
+}
+.creators_panel {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: pink;
+  width: 100%;
+  height: 100%;
+}
+
+.title_text {
+  margin: 8px;
+  margin-left: 15px;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.creator_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 10px;
+}
+
+.rank_number {
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 28px;
+  margin: 10px;
+  align-self: center;
+}
+.creater_username {
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 12px;
+  margin: 10px;  
+  align-self: center;
+}
+#hashtag_number {
+  margin: 5px;
+  font-size: 13px;
+}
+
+.hashtags_panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.hashtag_video {
+  
 }

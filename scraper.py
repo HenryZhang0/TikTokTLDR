@@ -44,7 +44,8 @@ Example("funny", "Straight"), Example("cemetery", "Alt"), Example("cute", "Strai
         parameters = {'hashtags' : []}
         parameters['video_id'] = video.id
         parameters['video_sound'] = video.sound.title
-        #print(video.author)
+        #print(video.info()["video"]["playAddr"])
+        
         parameters['video_author'] = video.author.username
         parameters['liked_profile_picture'] = video.author.as_dict['avatarLarger']
         likeduserprofile[video.author.username] = video.author.as_dict['avatarLarger']

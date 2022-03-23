@@ -110,8 +110,9 @@ Example("funny", "Straight"), Example("cemetery", "Alt"), Example("cute", "Strai
     else:
         tiktokScore = "straight"
 
-    data['tiktokScore'] = tiktokScore
-
+    data['tiktokScoreResult'] = tiktokScore
+    # data['tiktokScoreResult'] = [tiktokScore, max(altScore, straightScore)/(altScore + straightScore)]
+    
     
     return data
 

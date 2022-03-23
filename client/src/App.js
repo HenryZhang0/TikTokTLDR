@@ -101,7 +101,8 @@ function App() {
             ))}
           </div>
           <div className="hashtag_video">
-            
+            <video className = 'video' height="240" src = {userData.most_common_hashtags_video} autoPlay/>
+              
           </div>
         </div>
       </div>

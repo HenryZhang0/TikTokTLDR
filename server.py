@@ -15,6 +15,11 @@ def programmers():
 
 @app.route('/user/<id>') # /user route
 def user(id): 
+    if(id == "test"):
+        print("returning test data")
+        f = open('taylor.json')
+        dat = json.load(f)
+        return dat
     data = scrape(id) # calls scraper function with id parameter
     #print("here's the data: ", data)
     return data

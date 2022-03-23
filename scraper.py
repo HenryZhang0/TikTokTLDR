@@ -2,9 +2,13 @@ import json
 from TikTokApi import TikTokApi
 from collections import Counter
 import datetime
+import cohere
+from cohere.classify import Example
+
 
 def scrape(id):
     api = TikTokApi(custom_verify_fp="verify_f72cedcee003f30d59dcf422b12b9dcc")
+    co = cohere.Client('A1nCKRTxl0qZHGQK8YPKWuY5Ci6Fd1bNkk1ymeEW')
     user = api.user(username=id)
     #for liked_video in user.liked(username='public_likes'):
     #    print(liked_video)
@@ -16,6 +20,8 @@ def scrape(id):
     liked_sounds = []
     # list of common hastags to filter out
     keywords = ["fyp", "foryou", "xyzbca", "viral", "pov", "greenscreen", "stitch", "trending", "duet" ]
+    classifyExamples = [Example("Trees", "Alt"), Example("asmr", "Straight"), Example("Diesel", "Alt"), Example("Donuts", "Alt"), Example("Watermelon", "Alt"), Example("Fruit", "Alt"), Example("Zoo", "Alt"), Example("swag", "Straight"), Example("techtok", "Alt"), Example("fitness", "Straight"), Example("prank", "Straight"), Example("whisper", "Straight"), Example("gay", "Straight"), Example("lgbt", "Straight"), Example("comedy", "Straight"),
+Example("funny", "Straight"), Example("cemetery", "Alt"), Example("cute", "Straight"), Example("dance", "Straight"), Example("italian", "Alt"), Example("cars", "Alt"), Example("fun", "Straight"), Example("sealife", "Alt"), Example("doggo", "Alt"), Example("art", "Straight"), Example("painting", "Alt"), Example("love", "Straight"), Example("diy", "Alt"), Example("basketball", "Alt"), Example("backpack", "Alt"), Example("magic", "Alt"), Example("chef", "Alt"), Example("fashion", "Straight"), Example("swimming", "Alt"), Example("couple", "Straight"), Example("canada", "Straight"), Example("boys", "Straight"), Example("bts", "Straight"), Example("gaming", "Alt"), Example("valorant", "Alt"), Example("kpop", "Straight"), Example("toronto", "Straight"), Example("korean", "Straight"), Example("food", "Straight"), Example("mixed", "Straight"), Example("culture", "Straight"), Example("frat", "Straight")]
     # data
     data = {}
     likeduserprofile = {}
@@ -75,7 +81,40 @@ def scrape(id):
     #with open('taylor.json', 'w') as fp:
     #    json.dump(data, fp,  indent=4)
     
+    #Classification Model
+    classifications = co.classify(
+        model='medium-20220217',
+        taskDescription='Identify Users Hashtags as part of straight or alt tiktok',
+        outputIndicator='Classify these hashtags',
+        inputs=[hashtags[0]],
+        examples=[Example("Trees", "Alt"), Example("asmr", "Straight"), Example("Diesel", "Alt"), Example("Donuts", "Alt"), Example("Watermelon", "Alt"), Example("Fruit", "Alt"), Example("Zoo", "Alt"), Example("swag", "Straight"), Example("techtok", "Alt"), Example("fitness", "Straight"), Example("prank", "Straight"), Example("whisper", "Straight"), Example("gay", "Straight"), Example("lgbt", "Straight"), Example("comedy", "Straight"),
+Example("funny", "Straight"), Example("cemetery", "Alt"), Example("cute", "Straight"), Example("dance", "Straight"), Example("italian", "Alt"), Example("cars", "Alt"), Example("fun", "Straight"), Example("sealife", "Alt"), Example("doggo", "Alt"), Example("art", "Straight"), Example("painting", "Alt"), Example("love", "Straight"), Example("diy", "Alt"), Example("basketball", "Alt"), Example("backpack", "Alt"), Example("magic", "Alt"), Example("chef", "Alt"), Example("fashion", "Straight"), Example("swimming", "Alt"), Example("couple", "Straight"), Example("canada", "Straight"), Example("boys", "Straight"), Example("bts", "Straight"), Example("gaming", "Alt"), Example("valorant", "Alt"), Example("kpop", "Straight"), Example("toronto", "Straight"), Example("korean", "Straight"), Example("food", "Straight"), Example("mixed", "Straight"), Example("culture", "Straight"), Example("frat", "Straight")])
+
+
+
+
+    altScore = 0
+    straightScore = 0
+
+    #Following code gives percentage weight for straightness!!!!!!!
+    print(classifications.classifications[0].confidence.confidence)
+    '''
+    for i in classifications.classifications[0]["results"]:
+            altScore += i.confidences[0].confidence
+            straightScore += i.confidences[1].confidence
+    '''
+
+    if altScore > straightScore:
+        tiktokScore = "alt"
+    else:
+        tiktokScore = "straight"
+
+    data['tiktokScore'] = tiktokScore
+
+    
     return data
+
+
 
 # DATA SENDING TO FRONTEND
 

@@ -3,7 +3,6 @@ from gevent import monkey # fixes thread issue
 monkey.patch_all() # ^
 from flask import Flask
 from scraper import *
-import json
 
 app = Flask(__name__)
 
@@ -16,11 +15,6 @@ def programmers():
 
 @app.route('/user/<id>') # /user route
 def user(id): 
-    if(id == "test"):
-        print("returning test data")
-        f = open('taylor.json')
-        dat = json.load(f)
-        return dat
     data = scrape(id) # calls scraper function with id parameter
     #print("here's the data: ", data)
     return data

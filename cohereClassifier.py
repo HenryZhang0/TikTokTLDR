@@ -28,8 +28,8 @@ def classify_straight(hashtags):
         '''
 
 
-    for i in range(100):
-            straightScore += classifications.classifications[i].confidence.confidence
+    for i in classifications.classifications:
+            straightScore += i.confidence.confidence
 
     straightScore /= 100    
     print(straightScore)
@@ -38,7 +38,7 @@ def classify_straight(hashtags):
     else:
         tiktokScore = "straight"
 
-    return straightScore
+    return [straightScore, tiktokScore]
 
 
 

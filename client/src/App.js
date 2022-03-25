@@ -87,7 +87,7 @@ function App() {
       <div>
         <div className="title_text">MOST COMMON HASHTAGS</div>
         <div className="hashtags_panel">
-          <div>
+          <div className="hashtags_column">
             {userData.most_common_hashtags.map((hasht, i) => (
               <div className="creator_row">
                 <div className="rank_number" id="hashtag_number">
@@ -101,8 +101,11 @@ function App() {
             ))}
           </div>
           <div className="hashtag_video">
-            <video className = 'video' height="240" src = {userData.most_common_hashtags_video} autoPlay/>
-              
+            <video
+              className="video"
+              src={userData.most_common_hashtags_video}
+              autoPlay
+            />
           </div>
         </div>
       </div>
@@ -113,17 +116,56 @@ function App() {
     const favouriteSoundsDiv = (
       <div>
         <div className="title_text">MOST LIKED SOUNDS</div>
-        <div>
-          {userData.most_liked_sounds.map((hasht, i) => (
-            <p key={i} style={{ margin: "3px 0" }}>
-              {hasht[0]} - {hasht[1]}
-            </p>
-          ))}
+        <div className="sounds_panel">
+          <div className="sounds_column">
+            {userData.most_liked_sounds.map((hasht, i) => (
+              <div className="sounds_row">
+                <p key={i} style={{ margin: "3px 0" }}>
+                  {hasht[0]} - {hasht[1]}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
     setSliderData((sliderData) => [...sliderData, favouriteSoundsDiv]);
-
+    console.log("score div");
+    const straight_percentage = (userData.straight_score[0]*100).toString() + "%";
+    const ratingDiv = (
+      <div>
+        <div className="title_text">YOUR TIKTOK SCORE</div>
+        <div className="score_panel">
+            <div className="score_column">
+              <div className="score_slider">
+                <div className="score_name">
+                  Straight
+                </div>
+                <div className="meter">
+                  <span style={{width: straight_percentage}}></span>
+                </div>
+              </div>
+              <div className="score_slider">
+                <div className="score_name">
+                  SCORE 2
+                </div>
+                <div className="meter">
+                  <span style={{width: "33.3%"}}></span>
+                </div>
+              </div>
+              <div className="score_slider">
+                <div className="score_name">
+                  SCORE 3
+                </div>
+                <div className="meter">
+                  <span style={{width: "33.3%"}}></span>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    );
+    setSliderData((sliderData) => [...sliderData, ratingDiv]);
     setInvisible(false);
   };
 

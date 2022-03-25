@@ -17,7 +17,7 @@ def programmers():
 def user(id): 
     if(id == "test"):
         print("returning test data")
-        f = open('taylor.json')
+        f = open('test.json')
         dat = json.load(f)
         return dat
     data = scrape(id) # calls scraper function with id parameter

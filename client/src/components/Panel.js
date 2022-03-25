@@ -1,5 +1,30 @@
 import {FaTwitter, FaInstagram, FaDownload, FaLink} from 'react-icons/fa'
+import html2canvas from "html2canvas";
 
+// IMAGE DOWNLOADER
+const handleDownloadImage = () => {
+  const element = document.getElementById('print');
+  html2canvas(document.querySelector("#print"), {
+    allowTaint: true,
+  }).then(canvas => {
+    if(false){ // set to true for the deployment
+      let data = canvas.toDataURL('image/jpg');
+      let link = document.createElement('a');
+
+      link.href = data;
+      link.download = 'downloaded-image.jpg';
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      document.body.appendChild(canvas);
+    }
+  });
+  
+  // canvas = html2canvas(element),
+  
+};
 const Panel = ({ backgroundColour, content }) => {
   return (
     <div className="panel">
@@ -15,7 +40,7 @@ const Panel = ({ backgroundColour, content }) => {
             <FaTwitter className="share"/>
             <FaInstagram className="share"/>
             <FaLink className="share"/>
-            <FaDownload className="share"/>
+            <FaDownload className="share" onClick={handleDownloadImage}/>
           </div>
           
       </div>

@@ -56,7 +56,7 @@ def scrape(id):
         parameters['liked_profile_picture'] = video.author.as_dict['avatarLarger']
         likeduserprofile[video.author.username] = video.author.as_dict['avatarLarger']
         liked_users.append(video.author.username)
-        if video.sound.title != "original sound":
+        if not any([a in video.sound.title for a in ["original sound", "sonido original"]]):
             liked_sounds.append(video.sound.title)
             # video sound example
             #print("KEEEEEK\n\n", video.sound.info()['playUrl'])
@@ -141,8 +141,8 @@ def scrape(id):
     # data['tiktokScoreResult'] = [tiktokScore, max(altScore, straightScore)/(altScore + straightScore)]
 
     # caching test users
-    # with open('test.json', 'w') as fp:
-    #    json.dump(data, fp,  indent=4)
+    with open('test.json', 'w') as fp:
+        json.dump(data, fp,  indent=4)
     return data
 
 

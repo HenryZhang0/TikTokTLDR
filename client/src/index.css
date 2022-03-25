@@ -212,6 +212,7 @@ body {
   flex-direction: column;
   width: 50%;
   margin-top: 15px;
+  margin: 15px;
 }
 
 .sounds_panel {

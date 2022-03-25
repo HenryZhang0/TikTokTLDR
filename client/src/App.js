@@ -6,6 +6,7 @@ import { StackedCarousel } from "react-stacked-carousel";
 import "./carousel.css";
 import { SliderData } from "./components/SliderData";
 import ImageSlider from "./components/ImageSlider";
+import html2canvas from "html2canvas";
 
 function App() {
   // VARIABLES
@@ -62,7 +63,7 @@ function App() {
     console.log("creator div");
     console.log(userData);
     const favouriteCreatorsDiv = (
-      <div className="creators_panel">
+      <div className="creators_panel"  id = 'print'>
         <div className="title_text">Your Top Creators</div>
         {userData.most_liked_users.map((hasht, i) => (
           <div className="creator_row" key={i}>
@@ -84,7 +85,7 @@ function App() {
     setSliderData((sliderData) => [...sliderData, favouriteCreatorsDiv]);
     console.log("hashtags div");
     const favouriteHashtagsDiv = (
-      <div>
+      <div id = 'print'>
         <div className="title_text">MOST COMMON HASHTAGS</div>
         <div className="hashtags_panel">
           <div className="hashtags_column">
@@ -169,7 +170,7 @@ function App() {
     setInvisible(false);
   };
 
-  //styles
+
 
   return (
     <div>

@@ -6,6 +6,10 @@ from scraper import *
 
 app = Flask(__name__)
 
+
+c = open('cached_users.json')
+cached_users = json.load(c)
+
 #### EXAMPLE ROUTE
 @app.route("/programmers") 
 
@@ -20,15 +24,31 @@ def user(id):
         f = open('test.json')
         dat = json.load(f)
         return dat
+    if(id in cached_users["usernames"]):
+        print("returning cached userdata:", id)
+        f = open('test.json')
+        dat = json.load(f)
+        return dat
+
     data = scrape(id) # calls scraper function with id parameter
-    #print("here's the data: ", data)
+    with open(id+'.json', 'w') as fp: # saves to cache
+        json.dump(data, fp,  indent=4)
+    with open('cached_users.json', 'w') as fp: # saves to cache
+        cached_users["usernames"] += [id]
+        json.dump(cached_users, fp,  indent=4)
     return data
 
-@app.route('/audio/<id>') # /user route
+
+
+@app.route('/audio/<id>') # /audio route
 def song(id): 
     audio_data = get_audio(id)
     print("song get", audio_data)
     return audio_data
+
+
+
+
 
 if __name__ == "__main__": # entry point
     app.run(debug=False)

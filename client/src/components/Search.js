@@ -12,7 +12,7 @@ const Search = ({onsubmit, usernameInputField, setUsernameInputField}) => {
                 onChange={(e) => setUsernameInputField(e.target.value)}
                 placeholder="Enter Account Name"
               />
-              <button type="submit" >
+              <button id = "submit_button" type="submit" >
                 Search
               </button>
             </div>

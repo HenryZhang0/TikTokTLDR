@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
 import Search from "./components/Search";
 import Panel from "./components/Panel";
 import { StackedCarousel } from "react-stacked-carousel";
@@ -49,6 +50,26 @@ function App() {
         setData(data);
         console.log(data);
       });
+    let path = window.location.pathname.slice(1);
+    let shared = path.slice(6)
+    if (path.slice(0,5) == "share" && shared.length > 5){
+      console.log(shared)
+      let butt = document.getElementById('submit_button')
+      setUsernameInputField(shared)
+      setUser(shared);
+      console.log(`Account name entered was: ${shared}`);
+      fetch(`/user/${shared}`)
+      .then(
+        // fetch userData
+        (res) => res.json()
+      )
+      .then((data) => {
+        setSoundData(data.most_liked_sounds_album["most_liked_sounds_album"])
+        setAlbumSucks(<AlbumPlayer most_liked_sounds_album = {data.most_liked_sounds_album}></AlbumPlayer>)
+        setUserData(data);
+        console.log("pp", data.most_liked_sounds_album["most_liked_sounds_album"])
+      });
+    }
   }, []);
 
   const fetchUser = (event) => {
@@ -298,9 +319,8 @@ function App() {
       {invisible ? (
         <div style={{ display: "none" }}> notthere </div>
       ) : (
-        <div>
-          <ImageSlider sliderData={sliderData} userData={userData} />
-        </div>
+        <ImageSlider sliderData={sliderData} userData={userData} />
+
       )}
 
       {true ? (

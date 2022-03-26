@@ -6,6 +6,15 @@ body {
   background-color: rgb(233, 230, 230);
 }
 
+.banner {
+  height: 100px;
+  padding-top: 20px;
+}
+
+#print {
+  
+}
+
 .panel-home {
     display: flex;
     flex-direction: row;
@@ -69,7 +78,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  background-color: #4de8f4;
+  background-color: #B5F8FE;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 5px;
   height: 600px;
@@ -100,15 +109,25 @@ body {
 
 .share {
   margin: 3px;
-  padding: 2px;
+  padding: 2px;  
+}
+
+.twitter-share-button {
+  text-decoration: none;
+  color: black;
+}
+
+.share:hover {
+  cursor: pointer;
 }
 
 .searchBox {
   display: flex;
-  background-color: pink;
+  background-color: transparent;
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
+  padding-bottom: 30px;
 }
 
 .search {
@@ -156,11 +175,74 @@ body {
 .search button:focus {
   outline: 0;
 }
+.user_profile_panel {
+  display:flex;
+  flex-direction: column;
+  justify-content: top;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+
+}
+.userProfileDiv {
+  display:flex;
+  flex-direction: row;
+  align-items: flex-end;
+  background-color: white;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+
+  box-shadow: 1px 1px 5px #888888;
+}
+.profile_pic {
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  margin:6px;
+}
+.user_bio {
+  display:flex;
+  flex-direction: column;
+  padding:4px;
+}
+.user_alias {
+  font-size: 12px;
+}
+.user_name {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+}
+.user_stats {
+  display:flex;
+  font-size: 12px;
+  flex-direction: row;
+}
+
+.overview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: white;
+  padding: 10px;
+  margin: 10px;
+
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px #888888;
+}
+
+.stat {
+  font-size: 15px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 10px;
+}
+
 .creators_panel {
   display:flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: pink;
+  background-color: transparent;
   width: 100%;
   height: 100%;
 }
@@ -176,7 +258,20 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  margin: 10px;
+  align-items: center;
+  margin: 5px;
+  padding: 3px;
+}
+
+.creator_row:hover {
+  background-color: whitesmoke;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.creator_row p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
 }
 
 .rank_number {
@@ -191,10 +286,7 @@ body {
   margin: 10px;  
   align-self: center;
 }
-#hashtag_number {
-  margin: 5px;
-  font-size: 13px;
-}
+
 
 .hashtags_panel {
   display: flex;
@@ -208,16 +300,24 @@ body {
 }
 
 .hashtag_video {
+  background-color: white;
+  box-shadow: 1px 1px 5px #888888;
+  border-radius: 10px;
+
   display:flex;
   flex-direction: column;
-  width: 50%;
+  width: 45%;
   margin-top: 15px;
   margin: 15px;
+
+  padding: 10px;
+
+  height: 50%;
 }
 
 .sounds_panel {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 }
 
@@ -225,14 +325,97 @@ body {
   display:flex;
   flex-direction: column;
   width: 100%;
+  padding-top: 10px;
+  padding-left: 25px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
 }
 
 .sounds_row {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  margin: 10px;
+  justify-content: flex;
+  align-items: center;
+  margin: 5px;
+  width: 85%;
+  padding: 5px;
 
+}
+.rank_number {
+  text-align: center;
+
+  width: 20px;
+  height: 20px;
+  margin: 1px;
+  margin-right: 15px;
+  font-size: 13px;
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
+  border-radius: 50%;
+
+  box-shadow: 1px 1px 5px #888888;
+}
+
+.sounds_row:hover {
+  background-color: whitesmoke;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+
+
+.album {
+  display:flex;
+  flex-direction: column;
+  
+
+  align-items: center;
+  align-self: center;
+  background-color: white;
+  padding:10px;
+  padding-top: 5px;
+  width: 80%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: transparent;
+
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px #888888;
+}
+
+.album_info {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.album_artist {
+  background-color: transparent;
+  align-self: stretch;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-content: space-between;
+  font-family: Verdana;
+
+  max-height: 170px;
+}
+
+.album_artist #title {
+  font-weight: bold;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.album_artist #artists {
+  font-size: 15px;
+}
+
+.album img {
+  padding: 10px;
+}
+
+.album audio {
+  height: 30px;
 }
 
 .score_panel {
@@ -243,21 +426,27 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: pink;
+  background-color: white;
   padding: 10px;
   margin: 20px; /*space between*/
+
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px #888888;
 }
 
 .score_name {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   font-weight: bold;
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
 }
 
 .meter { 
   height: 15px; 
   position: relative;
-  background: #555;
+  background: rgb(180, 180, 180);
   border-radius: 25px;
   padding: 7px;
   margin: 10px;
@@ -271,7 +460,8 @@ body {
   border-bottom-right-radius: 8px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  background-color: rgb(62, 197, 231);
+  /*fill color*/
+  background-color: #10FFCB;
   background-image: linear-gradient(
     center bottom,
     rgb(43,194,83) 37%,
@@ -282,6 +472,10 @@ body {
     inset 0 -2px 6px rgba(0,0,0,0.4);
   position: relative;
   overflow: hidden;
+}
+
+.percentage {
+  
 }
 
 @keyframes expandWidth {

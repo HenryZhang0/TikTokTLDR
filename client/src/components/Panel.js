@@ -23,21 +23,30 @@ const handleDownloadImage = () => {
   });
   
   // canvas = html2canvas(element),
+
   
 };
+  
+const openLink = ({link}) => {
+  // window.open(link, "_blank");
+};
+
 const Panel = ({ backgroundColour, content }) => {
   return (
     <div className="panel">
       {content}
       <div className = 'bottomBar'>
           <div className = 'logo-container, share'>
-            <img src = "http://assets.stickpng.com/images/602179070ad3230004b93c28.png"
-                height = "20"
+            <img src="https://lh3.googleusercontent.com/TDjcir9c-_WbQxCcOFqx8KAQ8T6ZiQUDSUb_WnXGg8aONczHXjc5DmIdHl8uzQpCiPugCUpQbBKXpWo7QTIffPfZ3Bjve1wv_ILVzKtHuuphjX_IFkOOW-9n3nTh5uFJZSyhiCh5XY0=w2400"
+                height = "35"
                 className = "logo" 
             />
           </div>
           <div className = 'share-container'>
-            <FaTwitter className="share"/>
+          <a class="twitter-share-button"
+          href="https://twitter.com/intent/tweet?text=Check%20out%20my%20TikTok%20Stats!"
+          data-size="large">
+            <FaTwitter className="share"/> </a>
             <FaInstagram className="share"/>
             <FaLink className="share"/>
             <FaDownload className="share" onClick={handleDownloadImage}/>

@@ -3,11 +3,12 @@ from TikTokApi import TikTokApi
 from collections import Counter
 import cohere
 from cohere.classify import Example
-from cohereClassifier import classify_straight
+from cohereClassifier import classify_hashtag
+from hashtags import *
 
 
+api = TikTokApi(custom_verify_fp="verify_kur2tu8a_7SYVDTY2_3aWr_4LrQ_9vZb_ccDNB60S5qVC")
 def scrape(id):
-    api = TikTokApi(custom_verify_fp="verify_kur2tu8a_7SYVDTY2_3aWr_4LrQ_9vZb_ccDNB60S5qVC")
     co = cohere.Client('A1nCKRTxl0qZHGQK8YPKWuY5Ci6Fd1bNkk1ymeEW')
     user = api.user(username=id)
     # for liked_video in user.liked(username='public_likes'):
@@ -26,6 +27,12 @@ def scrape(id):
     # data
     data = {}
     likeduserprofile = {}
+    userdata_info_full = user.info_full()
+    full_stats = userdata_info_full["stats"]
+    data['follower_count'] = full_stats["followerCount"]
+    data['following_count'] = full_stats["followingCount"]
+    data['likes_count'] = full_stats["heart"]
+    data['videos_count'] = full_stats['videoCount']
     data['id'] = userdata["id"]
     data['username'] = userdata["nickname"]
     data['openFavorite'] = userdata['openFavorite']
@@ -43,20 +50,38 @@ def scrape(id):
     # for the example video
     hashtag_videos = {}
     sounds_videos = {}
+    challenges = []
+    liked_video_count = 0
+    average_likes = 0
+    average_views = 0
+    average_duration = 0
+    most_viewed_video = []
     #
 
     user_liked_videos = user.liked(username='public_likes', count=1000)
     for video in user_liked_videos:
+        liked_video_count += 1
+
         parameters = {'hashtags': []}
         parameters['video_id'] = video.id
         parameters['video_sound'] = video.sound.title
         # print(video.info()["video"]["playAddr"])
+        
+        # Averages for USER STATS
+        
+        most_viewed_video += [(video.id, video.as_dict["stats"]['playCount'])]
 
+        
+        average_likes += video.as_dict["stats"]['diggCount']
+        average_views += video.as_dict["stats"]['playCount']
+        average_duration += video.as_dict['video']['duration']
+        
+        # author
         parameters['video_author'] = video.author.username
         parameters['liked_profile_picture'] = video.author.as_dict['avatarLarger']
         likeduserprofile[video.author.username] = video.author.as_dict['avatarLarger']
         liked_users.append(video.author.username)
-        if not any([a in video.sound.title for a in ["original sound", "sonido original"]]):
+        if not any([a in video.sound.title for a in ["son original", "original sound", "sonido original"]]):
             liked_sounds.append(video.sound.title)
             # video sound example
             #print("KEEEEEK\n\n", video.sound.info()['playUrl'])
@@ -81,37 +106,63 @@ def scrape(id):
         liked_videos.append(parameters)
     data['likedVideos'] = liked_videos
 
+
+    most_viewed_video.sort(key = lambda x: x[1], reverse=True)
+    most_viewed_video = most_viewed_video[:10]
+
+
     c = Counter(hashtags)
     c_user = Counter(liked_users)
     c_sound = Counter(liked_sounds)
     c_self = Counter(selfHashtags)
-    print ('most common', c.most_common(10))
+    # print ('most common', c.most_common(10))
     data['self_hashtags'] = c_self.most_common(10)
     data['most_liked_users'] = list(
         map(lambda x: list(x) + [likeduserprofile[x[0]]], c_user.most_common(5)))
-    # print(data['most_liked_users'])
+    #print(most_viewed_video)
    
+   # MOST POPULAR LIKED VIDEOS
+    data['most_popular_liked_videos'] = ":)" #[api.video(id=x[0]).as_dict["video"]["downloadAddr"] for x in most_viewed_video]
+    cohere_summary_str = ". ".join([api.video(id=x[0]).as_dict["desc"] for x in most_viewed_video])
+    #print(cohere_summary_str)
+
    
    # MOST COMMON
     data['most_common_hashtags'] = c.most_common(10)
-    print(data['most_common_hashtags'])
+    #print(data['most_common_hashtags'])
+    data['most_common_hashtags_videos'] = []
+    for hse in data['most_common_hashtags']:
+        data['most_common_hashtags_videos'] += [hashtag_videos[hse[0]][0].id]
+        
     data['most_common_hashtags_video'] = hashtag_videos[data['most_common_hashtags']
-                                                        [0][0]][0].info()["video"]["downloadAddr"]
-    print("1111\n\n", data['most_common_hashtags_video'])
+        [0][0]][0].info()["video"]["downloadAddr"]
+    
     # MOST COMMON SOUNDS
     data['most_liked_sounds'] = c_sound.most_common(10)
-    data['most_liked_sounds_video'] = []
+    data['most_liked_sounds_id'] = []
+    for hse in data['most_liked_sounds']:
+        data['most_liked_sounds_id'] += [sounds_videos[hse[0]][0].id]
+    album_data = sounds_videos[data['most_liked_sounds'][0][0]][0].info()
+    data['most_liked_sounds_album'] = {"most_liked_sounds_album":[album_data["playUrl"], album_data["coverLarge"], album_data["authorName"], album_data["album"]]}
+    
+    # USE FOR SEPARATE FUNCTION
+    '''
     for x in data['most_liked_sounds']:
         thefofo = sounds_videos[x[0]][0].info()
         data['most_liked_sounds_video'] += [thefofo["playUrl"], thefofo["coverLarge"]] 
+    '''
+    
     ##data['most_liked_sounds_video'] = [sounds_videos[x[0]][0].info()["playUrl"] for x in data['most_liked_sounds']]
     #data['most_liked_sounds_video'] = sounds_videos[data['most_liked_sounds'][0][0]][0].info()["playUrl"]
     #print(data["most_liked_sounds_video"])
     #print("2222\n\n", data['most_common_sounds_video'])
 
     
-
-
+    # USER DATA
+    data['num_liked_videos'] = liked_video_count
+    data['average_liked_views'] = average_views
+    data['average_liked_likes'] = average_likes
+    data['average_liked_duration'] = average_duration
 
     # Classification Model
     # classifications = co.classify(
@@ -135,17 +186,31 @@ def scrape(id):
             altScore += i.confidences[0].confidence
             straightScore += i.confidences[1].confidence
     '''
-    straight_score = classify_straight(hashtags[:20])
+    #Generate scores based on hashtags 
+    straight_score = classify_hashtag(hashtags, "straight", "alt", straight_examples, alt_examples, amount = 100)
 
     data['straight_score'] = straight_score
     # data['tiktokScoreResult'] = [tiktokScore, max(altScore, straightScore)/(altScore + straightScore)]
+
+    cringe_score = classify_hashtag(hashtags, "cringe", "based", cringe_example, based_example, amount = 100)
+
+    data['cringe_score'] = cringe_score
+
 
     # caching test users
     with open('test.json', 'w') as fp:
         json.dump(data, fp,  indent=4)
     return data
 
-
+def get_audio(id):
+    k = TikTokApi.sound(id=id)
+    sound = k.info()
+    url = sound['playUrl']
+    cover = sound['coverLarge']
+    authorName = sound['authorName']
+    title = sound['title']
+    print(url)
+    return {"most_liked_sounds_album": [url, cover, authorName, title]}
 # DATA SENDING TO FRONTEND
 '''
 {

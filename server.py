@@ -24,6 +24,11 @@ def user(id):
     #print("here's the data: ", data)
     return data
 
+@app.route('/audio/<id>') # /user route
+def song(id): 
+    audio_data = get_audio(id)
+    print("song get", audio_data)
+    return audio_data
 
 if __name__ == "__main__": # entry point
     app.run(debug=False)

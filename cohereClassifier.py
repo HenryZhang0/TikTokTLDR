@@ -2,21 +2,19 @@ import cohere
 from cohere.classify import Example
 
 
-def classify_straight(hashtags):
+
+
+def classify_hashtag(hashtags, category1, category2, example1, example2, amount = 20):
     co = cohere.Client('A1nCKRTxl0qZHGQK8YPKWuY5Ci6Fd1bNkk1ymeEW')
 
-
-
+    all_examples = [Example(e, category1) for e in example1] + [Example(e, category2) for e in example2]
+    
     classifications = co.classify(
             model='medium-20220217',
             taskDescription='Identify Users Hashtags as part of straight or alt tiktok',
             outputIndicator='Classify these hashtags',
-            inputs=hashtags[:100],
-            examples=[Example("Trees", "Alt"), Example("asmr", "Straight"), Example("diesel", "Alt"), Example("donuts", "Alt"), Example("watermelon", "Alt"), Example("fruit", "Alt"), Example("zoo", "Alt"), Example("swag", "Straight"), Example("techtok", "Alt"), Example("fitness", "Straight"), Example("prank", "Alt"), Example("whisper", "Alt"), Example("gay", "Straight"), Example("lgbt", "Straight"), Example("comedy", "Straight"),
-            Example("money", "Alt"), Example("astrology", "Alt"), Example("family", "Alt"), Example("fashion", "Straight"), Example("funny", "Straight"),
-            Example("news", "Alt"), Example("cute", "Straight"), Example("math", "Alt"), Example("politics", "Alt"), Example("woman", "Straight"),
-            Example("school", "Alt")
-            ])
+            inputs=hashtags[:amount],
+            examples=all_examples)
 
 
     straightScore = 0
@@ -34,9 +32,9 @@ def classify_straight(hashtags):
     straightScore /= 100    
     print(straightScore)
     if 0.57 >= straightScore:
-        tiktokScore = "alt"
+        tiktokScore = category2
     else:
-        tiktokScore = "straight"
+        tiktokScore = category1
 
     return [straightScore, tiktokScore]
 

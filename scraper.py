@@ -91,16 +91,20 @@ def scrape(id):
         liked_users.append(video.author.username)
 
         #sounds
-        sound_set.add(video.sound.title)
-        if not any([a in video.sound.title for a in ["son original", "original sound", "sonido original"]]):
-            liked_sounds.append(video.sound.title)
-            # video sound example
-            #print("KEEEEEK\n\n", video.sound.info()['playUrl'])
-            if video.sound.title in sounds_videos:
-                sounds_videos[video.sound.title].append(video.sound)
-            else:
-                sounds_videos[video.sound.title] = [video.sound]
-            #
+        try:
+            sound_set.add(video.sound.title)
+            if not any([a in video.sound.title for a in ["son original", "original sound", "sonido original"]]):
+                liked_sounds.append(video.sound.title)
+                # video sound example
+                #print("KEEEEEK\n\n", video.sound.info()['playUrl'])
+                if video.sound.title in sounds_videos:
+                    sounds_videos[video.sound.title].append(video.sound)
+                else:
+                    sounds_videos[video.sound.title] = [video.sound]
+                #
+        except:
+            print('sound suck')
+
         for hashtag in video.hashtags:
             parameters['hashtags'].append(hashtag.name)
             hashtag_set.add(hashtag.name)

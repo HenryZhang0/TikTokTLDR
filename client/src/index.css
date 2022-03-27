@@ -69,7 +69,7 @@ body {
 
 .slider {
   position: relative;
-  height: 100vh;
+  height: 86vh;
   display: flex;
   justify-content: center;
 }
@@ -264,6 +264,11 @@ body {
   font-family: verdana;
   font-size: 12px;
   align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  height:100%;
+  width:70%;
+  align-self: center;
 }
 
 .stat_name {

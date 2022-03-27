@@ -123,6 +123,26 @@ function App() {
         console.log(data);
       });
   };
+  const handleVideoChange = (index) => {
+    console.log("Video: ",index)
+    let video_id = userData.most_common_hashtags_videos[index]
+    
+    fetch(`/video/${video_id}`)
+      .then(
+        // fetch userData
+        (res) => res.json()
+      )
+      .then((data) => {
+        //setAlbumSucks(<AlbumPlayer most_liked_sounds_album = {data}/>);
+        // document.getElementById('video').src = data["address"];
+        // document.getElementById('title').innerText = data["most_liked_sounds_album"][3];
+        // document.getElementById('artists').innerText = data["most_liked_sounds_album"][2];
+        let videoPlayer = document.getElementById('video')
+        document.getElementById('video_source').src = data["address"];;
+        videoPlayer.load()
+        console.log(data);
+      });
+  }
 
   const createSlides = () => {
     console.log("data", userData);
@@ -137,7 +157,7 @@ function App() {
             className="profile_pic"
           />
           <div className="user_bio">
-            <div className="user_alias">ryyryeo</div>
+            <div className="user_alias">{user}</div>
             <div className="user_name">{userData.username}</div>
             <div className="user_stats">
               <div className="stat_name">Followers: <b>{userData.follower_count}</b> </div>
@@ -163,9 +183,9 @@ function App() {
           <div className="stat">Scraped <b>{userData.num_liked_videos}</b> of your liked videos
 
           </div>
-          <div className="stat">Saw 7000 creators</div>
-          <div className="stat">Analyzed 6969 hashtags</div>
-          <div className="stat">Saved 2300 sounds</div>
+          <div className="stat">Saw <b>{userData.creator_count}</b> creators</div>
+          <div className="stat">Analyzed <b>{userData.hashtag_count}</b> hashtags</div>
+          <div className="stat">Saved <b>{userData.sound_count}</b> sounds</div>
 
         </div>
       </div>
@@ -200,8 +220,8 @@ function App() {
         <div className="hashtags_panel">
           <div className="hashtags_column">
             {userData.most_common_hashtags.map((hasht, i) => (
-              <div className="creator_row">
-                <div className="rank_number" id="hashtag_number">
+              <div className="creator_row" id="hashtag_number" onClick={() => {handleVideoChange(i)}}>
+                <div className="rank_number" >
                   {i + 1}
                 </div>
 
@@ -249,6 +269,7 @@ function App() {
     console.log("score div");
     const straight_percentage =  (Math.round(userData.straight_score[0]  * 10000) / 100).toString() + "%";
     const cringe_precentage = (Math.round(userData.cringe_score[0]  * 10000) / 100).toString() + "%";
+    const education_percentage = (Math.round(userData.education_score[0]  * 20000 / 300)).toString() + "%";
     const ratingDiv = (
       <div>
         <div className="title_text">WHAT SIDE OF TIKTOK ARE YOU ON?</div>
@@ -275,10 +296,14 @@ function App() {
               <div className="percentage">{cringe_precentage}</div>
             </div>
             <div className="score_slider">
-              <div className="score_name">SCORE 3</div>
-              <div className="meter">
-                <span style={{ width: "33.3%" }}></span>
+              <div className="score_name">
+                <div>Entertaining</div>
+                <div>Educational</div>
               </div>
+              <div className="meter">
+                <span style={{ width: education_percentage }}></span>
+              </div>
+              <div className="percentage">{education_percentage}</div>
             </div>
           </div>
         </div>
@@ -292,17 +317,17 @@ function App() {
     setSliderData((sliderData) => [...sliderData, mostViewedVideoDiv]);
     
     const tiktokRewind1 = (
-      <VideoPanel title = "ONE OF YOUR FAVOURITES:" src = {userData.rewind[0].address} stats = {userData.rewind[0].stats}></VideoPanel>
+      <VideoPanel title = "REWIND YOUR TIKTOK:" src = {userData.rewind[0].address} stats = {userData.rewind[0].stats}></VideoPanel>
   );
   setSliderData((sliderData) => [...sliderData, tiktokRewind1]);
 
   const tiktokRewind2 = (
-    <VideoPanel title = "ONE OF YOUR FAVOURITES:" src = {userData.rewind[1].address} stats = {userData.rewind[1].stats}></VideoPanel>
+    <VideoPanel title = "REWIND YOUR TIKTOK:" src = {userData.rewind[1].address} stats = {userData.rewind[1].stats}></VideoPanel>
   );
   setSliderData((sliderData) => [...sliderData, tiktokRewind2]);
 
   const tiktokRewind3 = (
-    <VideoPanel title = "ONE OF YOUR FAVOURITES:" src = {userData.rewind[2].address} stats = {userData.rewind[2].stats}></VideoPanel>
+    <VideoPanel title = "REWIND YOUR TIKTOK:" src = {userData.rewind[2].address} stats = {userData.rewind[2].stats}></VideoPanel>
   );
   setSliderData((sliderData) => [...sliderData, tiktokRewind3]);
 

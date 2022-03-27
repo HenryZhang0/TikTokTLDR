@@ -30,6 +30,10 @@ const handleDownloadImage = () => {
 const openLink = ({link}) => {
   // window.open(link, "_blank");
 };
+function copyLink(link) {
+  navigator.clipboard.writeText(link);
+  alert("Copied share link to clipboard: " + link); 
+}
 const path = window.location.hostname;
 const Panel = ({ backgroundColour, content, username }) => {
   return (
@@ -44,11 +48,10 @@ const Panel = ({ backgroundColour, content, username }) => {
           </div>
           <div className = 'share-container'>
           <a class="twitter-share-button"
-          href={"https://twitter.com/intent/tweet?text=Check%20out%20my%20TikTok%20Stats!" + path + "/share/" + username}
+          href={"https://twitter.com/intent/tweet?text=Check%20out%20my%20TikTok%20Stats!%20" + path + "/share/" + username}
           data-size="large">
             <FaTwitter className="share"/> </a>
-            <FaInstagram className="share"/>
-            <FaLink className="share"/>
+              <FaLink className="share" onClick={() => copyLink(path + "/share/" + username)}/>
             <FaDownload className="share" onClick={handleDownloadImage}/>
           </div>
           

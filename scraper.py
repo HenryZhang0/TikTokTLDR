@@ -56,10 +56,13 @@ def scrape(id):
     average_views = 0
     average_duration = 0
     most_viewed_video = []
+    hashtag_set = set()
+    user_set = set()
+    sound_set = set()
     #
 
-    user_liked_videos = user.liked(username='public_likes', count=1000)
-    for video in user_liked_videos:
+    #user_liked_videos = user.liked(username='public_likes', count=1000)
+    for video in user.liked(username='public_likes', count=1000):
         liked_video_count += 1
 
         parameters = {'hashtags': []}
@@ -78,9 +81,13 @@ def scrape(id):
         
         # author
         parameters['video_author'] = video.author.username
+        user_set.add(video.author.username)
         parameters['liked_profile_picture'] = video.author.as_dict['avatarLarger']
         likeduserprofile[video.author.username] = video.author.as_dict['avatarLarger']
         liked_users.append(video.author.username)
+
+        #sounds
+        sound_set.add(video.sound.title)
         if not any([a in video.sound.title for a in ["son original", "original sound", "sonido original"]]):
             liked_sounds.append(video.sound.title)
             # video sound example
@@ -92,6 +99,7 @@ def scrape(id):
             #
         for hashtag in video.hashtags:
             parameters['hashtags'].append(hashtag.name)
+            hashtag_set.add(hashtag.name)
 
             # Exclude hashtags
             if not any([a in hashtag.name for a in keywords]):
@@ -120,9 +128,11 @@ def scrape(id):
         rewind.append(get_video(randomVideo[i]['video_id']))
     data['rewind'] = rewind
     
+    data['hashtag_count'] = len(hashtag_set)
+    data['sound_count'] = len(sound_set)
+    data['creator_count'] = len(user_set)
 
-
-
+    
     c = Counter(hashtags)
     c_user = Counter(liked_users)
     c_sound = Counter(liked_sounds)
@@ -210,6 +220,9 @@ def scrape(id):
 
     data['cringe_score'] = cringe_score
 
+    education_score = classify_hashtag(hashtags, "educational", "entertainment", educational_example, entertainment_example, amount = 100)
+
+    data['education_score'] = education_score
 
     # caching test users
     with open('test.json', 'w') as fp:

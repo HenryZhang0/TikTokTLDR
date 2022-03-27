@@ -91,3 +91,41 @@ based_example = [
     "college",
     "school"
 ]
+
+educational_example = [
+    "canada",
+    "lakes", 
+    "school",
+    "textbook",
+    "math",
+    "science",
+    "calculus",
+    "college",
+    "university",
+    "history",
+    "teacher",
+    "phd",
+    "education",
+    "learn",
+    "video"
+
+]
+
+entertainment_example = [
+    "movie",
+    "fashion",
+    "tv",
+    "kdrama",
+    "drama",
+    "entertainment",
+    "funny",
+    "tiktok",
+    "hype",
+    "dance",
+    "skit",
+    "comedy",
+    "shows",
+    "laugh",
+    "food",
+    "travel"
+]

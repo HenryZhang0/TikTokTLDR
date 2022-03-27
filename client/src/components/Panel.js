@@ -30,8 +30,8 @@ const handleDownloadImage = () => {
 const openLink = ({link}) => {
   // window.open(link, "_blank");
 };
-
-const Panel = ({ backgroundColour, content }) => {
+const path = window.location.hostname;
+const Panel = ({ backgroundColour, content, username }) => {
   return (
     <div className="panel">
       {content}
@@ -44,7 +44,7 @@ const Panel = ({ backgroundColour, content }) => {
           </div>
           <div className = 'share-container'>
           <a class="twitter-share-button"
-          href="https://twitter.com/intent/tweet?text=Check%20out%20my%20TikTok%20Stats!"
+          href={"https://twitter.com/intent/tweet?text=Check%20out%20my%20TikTok%20Stats!" + path + "/share/" + username}
           data-size="large">
             <FaTwitter className="share"/> </a>
             <FaInstagram className="share"/>

@@ -29,7 +29,8 @@ def user(id):
         f = open('test.json')
         dat = json.load(f)
         return dat
-    id.replace("!", "")
+    id = id.replace("!", "")
+    print(id)
     data = scrape(id) # calls scraper function with id parameter
     with open(id+'.json', 'w') as fp: # saves to cache
         json.dump(data, fp,  indent=4)
@@ -46,7 +47,11 @@ def song(id):
     print("song get", audio_data)
     return audio_data
 
-
+@app.route('/video/<id>') # /audio route
+def video(id): 
+    video_url = get_video(id)
+    print("video get", video_url)
+    return video_url
 
 
 

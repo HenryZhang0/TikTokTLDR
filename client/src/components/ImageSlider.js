@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 //import {SliderData} from './SliderData';
 import Panel from './Panel';
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa'
-const ImageSlider = ({ sliderData }) => {
+const ImageSlider = ({ sliderData, username }) => {
     const [current, setCurrent] = useState(0)
     const length = sliderData.length;
 
@@ -30,7 +30,7 @@ const ImageSlider = ({ sliderData }) => {
                 {index === current && (
                   <div>
                     {/* <img src={slide.image} alt = "travel image" className = "image"/> */}
-                    <Panel content = {slide}/>
+                    <Panel content = {slide} username = {username}/>
                   </div>
                 )}
 

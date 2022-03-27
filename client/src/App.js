@@ -72,6 +72,18 @@ function App() {
     }
   }, []);
 
+  const fetchVideo = (id) => {
+    fetch(`/video/${id}`)
+      .then(
+        // fetch userData
+        (res) => res.json()
+      )
+      .then((data) => {
+        console.log("fetch video data:", data);
+        return data;
+      })
+    }
+
   const fetchUser = (event) => {
     event.preventDefault();
     setUser(usernameInputField);
@@ -90,23 +102,6 @@ function App() {
       });
   };
 
-  window.twttr = (function (d, s, id) {
-    var js,
-      fjs = d.getElementsByTagName(s)[0],
-      t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-
-    t._e = [];
-    t.ready = function (f) {
-      t._e.push(f);
-    };
-
-    return t;
-  })(document, "script", "twitter-wjs");
 
   const handleSoundChange = (index) => {
     console.log("SOUND: ",index)
@@ -145,12 +140,9 @@ function App() {
             <div className="user_alias">ryyryeo</div>
             <div className="user_name">{userData.username}</div>
             <div className="user_stats">
-              <div>Followers: <b>{userData.follower_count}&nbsp;</b> {"  "} 
-            </div>
-              <div>Following:&nbsp;
-              <b>{userData.following_count}&nbsp;</b></div>
-              <div> Likes: {" "}
-              <b>{userData.likes_count}</b></div>
+              <div className="stat_name">Followers: <b>{userData.follower_count}</b> </div>
+              <div className="stat_name">Following: <b>{userData.following_count}</b></div>
+              <div className="stat_name"> Likes: <b>{userData.likes_count}</b></div>
             </div>
           </div>
         </div>
@@ -219,7 +211,7 @@ function App() {
               </div>
             ))}
           </div>
-          <VideoPlayer
+          <VideoPlayer 
             most_common_hashtags_video={userData.most_common_hashtags_video}
           />
         </div>
@@ -295,14 +287,25 @@ function App() {
     setSliderData((sliderData) => [...sliderData, ratingDiv]);
 
     const mostViewedVideoDiv = (
-        <VideoPanel title = "MOST VIEWED VIDEO"></VideoPanel>
+        <VideoPanel title = "MOST VIEWED VIDEO" src = {userData.most_popular_liked_videos.address} stats = {userData.most_popular_liked_videos.stats}></VideoPanel>
     );
     setSliderData((sliderData) => [...sliderData, mostViewedVideoDiv]);
+    
+    const tiktokRewind1 = (
+      <VideoPanel title = "ONE OF YOUR FAVOURITES:" src = {userData.rewind[0].address} stats = {userData.rewind[0].stats}></VideoPanel>
+  );
+  setSliderData((sliderData) => [...sliderData, tiktokRewind1]);
 
-    const mostLikedVideoDiv = (
-      <VideoPanel title = "MOST LIKED VIDEO"></VideoPanel>
-    );
-    setSliderData((sliderData) => [...sliderData, mostLikedVideoDiv]);
+  const tiktokRewind2 = (
+    <VideoPanel title = "ONE OF YOUR FAVOURITES:" src = {userData.rewind[1].address} stats = {userData.rewind[1].stats}></VideoPanel>
+  );
+  setSliderData((sliderData) => [...sliderData, tiktokRewind2]);
+
+  const tiktokRewind3 = (
+    <VideoPanel title = "ONE OF YOUR FAVOURITES:" src = {userData.rewind[2].address} stats = {userData.rewind[2].stats}></VideoPanel>
+  );
+  setSliderData((sliderData) => [...sliderData, tiktokRewind3]);
+
 
 
     setInvisible(false);
@@ -330,18 +333,23 @@ function App() {
       </div>
 
       {invisible ? (
-        <div>
-          <div>set your tiktok likes to public</div>
+        <div className="start_screen">
+          <div className="instructions">
+            <div id="getting_started">GETTING STARTED</div>
+            <div id="text">set your tiktok likes to public and enter your account name</div>
+          </div>
           <div>
           {loading ? (
-            <div>loading...</div>
+            <div className="loading">
+              <img src = "https://olaargentina.com/wp-content/uploads/2019/11/loading-gif-transparent-10.gif"></img>
+            </div>
           ) : (
             <></>
           )}
           </div>
         </div>
       ) : (
-        <ImageSlider sliderData={sliderData} userData={userData} />
+        <ImageSlider sliderData={sliderData} userData={userData} username = {user}/>
 
       )}
 

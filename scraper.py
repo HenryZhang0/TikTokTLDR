@@ -7,7 +7,7 @@ from cohereClassifier import classify_hashtag
 from hashtags import *
 
 
-api = TikTokApi(custom_verify_fp="verify_kur2tu8a_7SYVDTY2_3aWr_4LrQ_9vZb_ccDNB60S5qVC")
+api = TikTokApi(custom_verify_fp="verify_7a8db9a47431e0ff5cbe0c6c565e015f")
 def scrape(id):
     co = cohere.Client('tROv76zKglQGIbzsywOJ4b21v6UogXMwcl7qfSrU')
     user = api.user(username=id)
@@ -111,6 +111,18 @@ def scrape(id):
     most_viewed_video = most_viewed_video[:10]
 
 
+    # find random videos to showcase
+    likedVideoLen = len(data['likedVideos'])
+    randomVideo = data['likedVideos']
+    rewind = []
+    randomVideo = randomVideo[:: round(likedVideoLen / 3)]
+    for i in range(len(randomVideo)):
+        rewind.append(get_video(randomVideo[i]['video_id']))
+    data['rewind'] = rewind
+    
+
+
+
     c = Counter(hashtags)
     c_user = Counter(liked_users)
     c_sound = Counter(liked_sounds)
@@ -122,8 +134,10 @@ def scrape(id):
     #print(most_viewed_video)
    
    # MOST POPULAR LIKED VIDEOS
-    data['most_popular_liked_videos'] = ":)" #[api.video(id=x[0]).as_dict["video"]["downloadAddr"] for x in most_viewed_video]
-    cohere_summary_str = ". ".join([api.video(id=x[0]).as_dict["desc"] for x in most_viewed_video])
+    #mvl = api.video(id=most_viewed_video[0][0]).as_dict
+    #data['most_popular_liked_videos'] = [mvl["video"]["downloadAddr"], mvl["author"]]
+    data['most_popular_liked_videos'] = get_video(most_viewed_video[0][0])
+    # cohere_summary_str = ". ".join([api.video(id=x[0]).as_dict["desc"] for x in most_viewed_video])
     #print(cohere_summary_str)
 
    
@@ -211,6 +225,13 @@ def get_audio(id):
     title = sound['title']
     print(url)
     return {"most_liked_sounds_album": [url, cover, authorName, title]}
+
+def get_video(id):
+    k = TikTokApi.video(id=id)
+    url = k.as_dict["video"]["downloadAddr"]
+    stats = k.as_dict["stats"]
+    print(url)
+    return {"address": url, "stats":stats}
 # DATA SENDING TO FRONTEND
 '''
 {

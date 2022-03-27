@@ -3,16 +3,58 @@ html {
 }
 
 body {
-  background-color: rgb(233, 230, 230);
+  background-color: #FCEFEF;
+  padding-bottom: 20px;
 }
 
 .banner {
   height: 100px;
-  padding-top: 20px;
+  padding: 30px;
 }
 
-#print {
-  
+.start_screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 30%;
+  padding: 20px;
+
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px #888888;
+
+  text-align: center;
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.instructions #getting_started {
+  font-weight: bold;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.instructions #text {
+  font-size: 15px;
+}
+
+.loading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.loading img {
+  height: 100px;
+  margin-top: 40px;
 }
 
 .panel-home {
@@ -77,7 +119,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  background-color: #B5F8FE;
+  background-color: #A1FCDF;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 5px;
   height: 600px;
@@ -178,10 +220,11 @@ body {
   display:flex;
   flex-direction: column;
   justify-content: top;
-  background-color: pink;
+  background-color: #7FD8BE;
   width: 100%;
   height: 100%;
 
+  border-radius: 10px;
 }
 .userProfileDiv {
   display:flex;
@@ -206,7 +249,9 @@ body {
   padding:4px;
 }
 .user_alias {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 12px;
+  font-weight: bold;
 }
 .user_name {
   font-family: Arial, Helvetica, sans-serif;
@@ -215,8 +260,15 @@ body {
 }
 .user_stats {
   display:flex;
-  font-size: 12px;
   flex-direction: row;
+  font-family: verdana;
+  font-size: 12px;
+  align-content: center;
+}
+
+.stat_name {
+  margin: 2px;
+  margin-right: 5px;
 }
 
 .overview {
@@ -241,9 +293,11 @@ body {
   display:flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: pink;
+  background-color: #7FD8BE;
   width: 100%;
   height: 100%;
+
+  border-radius: 10px;
 }
 
 .title_text {
@@ -291,7 +345,9 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: pink;
+  background-color: #7FD8BE;
+
+  border-radius: 10px;
 }
 .hashtags_column {
   display:flex;
@@ -319,7 +375,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: pink;
+  background-color: #7FD8BE;
+
+  border-radius: 10px;
+  padding-top: 15px;
 }
 
 .sounds_column {
@@ -420,6 +479,9 @@ body {
 }
 
 .score_panel {
+  background-color: #7FD8BE;
+  border-radius: 10px;
+  padding-top: 20px;
   height: 100%;
 }
 
@@ -462,7 +524,7 @@ body {
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   /*fill color*/
-  background-color: #10FFCB;
+  background-color: #7FD8BE;
   background-image: linear-gradient(
     center bottom,
     rgb(43,194,83) 37%,
@@ -497,10 +559,14 @@ body {
   display:flex;
   flex-direction: column;
   width: 80%;
-  margin-top: 15px;
   margin: 15px;
 
   padding: 10px;
 
   height: 80%;
+}
+
+.video {
+  align-self: center;
+  width: 70%;
 }

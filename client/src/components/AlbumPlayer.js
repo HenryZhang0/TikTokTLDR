@@ -20,7 +20,7 @@ const AlbumPlayer = ({ most_liked_sounds_album }) => {
           ></img>
         </div>
 
-        <audio id = "audio_file" controls autoplay>
+        <audio id = "audio_file" controls autoPlay>
           <source id = "audio_source"
             src={most_liked_sounds_album[0]}
             type="audio/mp3"

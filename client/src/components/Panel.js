@@ -5,19 +5,19 @@ import html2canvas from "html2canvas";
 const handleDownloadImage = () => {
   const element = document.getElementById('print');
   html2canvas(document.querySelector("#print"), {
-    allowTaint: true,
+    useCORS: true
   }).then(canvas => {
-    if(false){ // set to true for the deployment
+    if(true){ // set to true for the deployment
       let data = canvas.toDataURL('image/jpg');
       let link = document.createElement('a');
-
+      //console.log(data)
       link.href = data;
       link.download = 'downloaded-image.jpg';
 
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    } else {
+    } else { 
       document.body.appendChild(canvas);
     }
   });
@@ -47,7 +47,7 @@ const Panel = ({ backgroundColour, content, username }) => {
             />
           </div>
           <div className = 'share-container'>
-          <a class="twitter-share-button"
+          <a className="twitter-share-button"
           href={"https://twitter.com/intent/tweet?text=Check%20out%20my%20TikTok%20Stats!%20" + path + "/share/" + username}
           data-size="large">
             <FaTwitter className="share"/> </a>

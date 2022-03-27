@@ -149,8 +149,8 @@ function App() {
 
     console.log("hashtags div");
     const userProfileDiv = (
-      <div className="user_profile_panel">
-        <div id="print" className="userProfileDiv">
+      <div id="print" className="user_profile_panel">
+        <div className="userProfileDiv">
           <img
             src={userData.profilePicture}
             alt="Profile Picture"
@@ -159,13 +159,13 @@ function App() {
           <div className="user_bio">
             <div className="user_alias">{user}</div>
             <div className="user_name">{userData.username}</div>
-            <div className="user_stats">
+            <div className="real_user_stats">
               <div className="stat_name">Followers: <b>{userData.follower_count}</b> </div>
               <div className="stat_name">Following: <b>{userData.following_count}</b></div>
               <div className="stat_name"> Likes: <b>{userData.likes_count}</b></div>
             </div>
           </div>
-        </div>
+        </div> 
         <div className="scraped_stats_div overview">
           <div className="stat">
             Your average watch video duration: &nbsp;
@@ -220,12 +220,12 @@ function App() {
         <div className="hashtags_panel">
           <div className="hashtags_column">
             {userData.most_common_hashtags.map((hasht, i) => (
-              <div className="creator_row" id="hashtag_number" onClick={() => {handleVideoChange(i)}}>
+              <div key={i} className="creator_row" id="hashtag_number" onClick={() => {handleVideoChange(i)}}>
                 <div className="rank_number" >
                   {i + 1}
                 </div>
 
-                <p key={i} style={{ margin: "3px 0" }}>
+                <p style={{ margin: "3px 0" }}>
                   #{hasht[0]} - {hasht[1]}
                 </p>
               </div>
@@ -271,7 +271,7 @@ function App() {
     const cringe_precentage = (Math.round(userData.cringe_score[0]  * 10000) / 100).toString() + "%";
     const education_percentage = (Math.round(userData.education_score[0]  * 20000 / 300)).toString() + "%";
     const ratingDiv = (
-      <div>
+      <div id="print">
         <div className="title_text">WHAT SIDE OF TIKTOK ARE YOU ON?</div>
         <div className="score_panel">
           <div className="score_column">
@@ -361,7 +361,10 @@ function App() {
         <div className="start_screen">
           <div className="instructions">
             <div id="getting_started">GETTING STARTED</div>
-            <div id="text">set your tiktok likes to public and enter your account name</div>
+            <div id="text">Set your tiktok likes to public and enter your username</div>
+            <div id="text">Discover your true TikTok self!</div>
+            <div id="text">See a collection of your favourite content</div>
+            <b id="text">Created by Team HAWKEN</b>
           </div>
           <div>
           {loading ? (

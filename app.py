@@ -1,8 +1,11 @@
-
+import time
 from gevent import monkey # fixes thread issue
 monkey.patch_all() # ^
 from flask import Flask
 from scraper import *
+import asyncio
+import nest_asyncio
+nest_asyncio.apply()
 
 app = Flask(__name__)
 
@@ -26,7 +29,8 @@ def user(id):
         return dat
     if(id in cached_users["usernames"]):
         print("returning cached userdata:", id)
-        f = open('test.json')
+        time.sleep(3)
+        f = open(id +'.json')
         dat = json.load(f)
         return dat
     id = id.replace("!", "")
@@ -56,4 +60,4 @@ def video(id):
 
 
 if __name__ == "__main__": # entry point
-    app.run(debug=False)
+    app.run(debug=0)

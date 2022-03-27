@@ -5,6 +5,11 @@ html {
 body {
   background-color: #FCEFEF;
   padding-bottom: 20px;
+  overflow: hidden;
+}
+
+html:-webkit-scrollbar {
+  display: none;
 }
 
 .banner {
@@ -24,6 +29,7 @@ body {
   flex-direction: column;
   justify-content: center;
 
+  line-height: 3.3;
   width: 30%;
   padding: 20px;
 
@@ -257,6 +263,19 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 900;
   font-size: 30px;
+  overflow-wrap: anywhere;
+  line-height: 1;
+}
+.real_user_stats {
+  display:flex;
+  flex-direction: row;
+  font-family: verdana;
+  font-size: 12px;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  height:100%;
+  width:70%;
 }
 .user_stats {
   display:flex;
@@ -373,7 +392,7 @@ body {
 
   padding: 10px;
 
-  height: 50%;
+  height: 80%;
 }
 
 .sounds_panel {

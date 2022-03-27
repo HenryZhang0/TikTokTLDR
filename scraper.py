@@ -5,7 +5,7 @@ import cohere
 from cohere.classify import Example
 from cohereClassifier import classify_hashtag
 from hashtags import *
-
+import asyncio
 
 api = TikTokApi(custom_verify_fp="verify_7a8db9a47431e0ff5cbe0c6c565e015f")
 def scrape(id):
@@ -21,7 +21,7 @@ def scrape(id):
     liked_sounds = []
     # list of common hastags to filter out
     keywords = ["fyp", "foryou", "xyzbca", "viral", "pov", "greenscreen", "stitch", "trending", "duet", "1", "2", "3", "4", "5",
-                "6", "fy", "iyk"]
+                "6", "fy", "iyk", "ad"]
     classifyExamples = [Example("Trees", "Alt"), Example("asmr", "Straight"), Example("Diesel", "Alt"), Example("Donuts", "Alt"), Example("Watermelon", "Alt"), Example("Fruit", "Alt"), Example("Zoo", "Alt"), Example("swag", "Straight"), Example("techtok", "Alt"), Example("fitness", "Straight"), Example("prank", "Straight"), Example("whisper", "Straight"), Example("gay", "Straight"), Example("lgbt", "Straight"), Example("comedy", "Straight"),
                         Example("funny", "Straight"), Example("cemetery", "Alt"), Example("cute", "Straight"), Example("dance", "Straight"), Example("italian", "Alt"), Example("cars", "Alt"), Example("fun", "Straight"), Example("sealife", "Alt"), Example("doggo", "Alt"), Example("art", "Straight"), Example("painting", "Alt"), Example("love", "Straight"), Example("diy", "Alt"), Example("basketball", "Alt"), Example("backpack", "Alt"), Example("magic", "Alt"), Example("chef", "Alt"), Example("fashion", "Straight"), Example("swimming", "Alt"), Example("couple", "Straight"), Example("canada", "Straight"), Example("boys", "Straight"), Example("bts", "Straight"), Example("gaming", "Alt"), Example("valorant", "Alt"), Example("kpop", "Straight"), Example("toronto", "Straight"), Example("korean", "Straight"), Example("food", "Straight"), Example("mixed", "Straight"), Example("culture", "Straight"), Example("frat", "Straight")]
     # data
@@ -61,14 +61,18 @@ def scrape(id):
     sound_set = set()
     #
 
-    #user_liked_videos = user.liked(username='public_likes', count=1000)
-    for video in user.liked(username='public_likes', count=1000):
+    user_liked_videos = user.liked(username='public_likes', count=1000)
+    user_liked_videos = list(user_liked_videos)
+    for video in user_liked_videos:
         liked_video_count += 1
 
         parameters = {'hashtags': []}
         parameters['video_id'] = video.id
-        parameters['video_sound'] = video.sound.title
-        # print(video.info()["video"]["playAddr"])
+        try:
+            parameters['video_sound'] = video.sound.title
+        except:
+            print('sound failure')
+            # print(video.info()["video"]["playAddr"])
         
         # Averages for USER STATS
         

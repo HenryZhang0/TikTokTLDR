@@ -9,7 +9,7 @@ from hashtags import *
 
 api = TikTokApi(custom_verify_fp="verify_kur2tu8a_7SYVDTY2_3aWr_4LrQ_9vZb_ccDNB60S5qVC")
 def scrape(id):
-    co = cohere.Client('A1nCKRTxl0qZHGQK8YPKWuY5Ci6Fd1bNkk1ymeEW')
+    co = cohere.Client('tROv76zKglQGIbzsywOJ4b21v6UogXMwcl7qfSrU')
     user = api.user(username=id)
     # for liked_video in user.liked(username='public_likes'):
     #    print(liked_video)

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
 import Search from "./components/Search";
 import Panel from "./components/Panel";
 import { StackedCarousel } from "react-stacked-carousel";
@@ -9,6 +8,7 @@ import { SliderData } from "./components/SliderData";
 import ImageSlider from "./components/ImageSlider";
 import AlbumPlayer from "./components/AlbumPlayer";
 import VideoPlayer from "./components/VideoPlayer";
+import VideoPanel from "./components/VideoPanel";
 import html2canvas from "html2canvas";
 import { FaPlay } from "react-icons/fa";
 
@@ -24,7 +24,7 @@ function App() {
   const isFirstRender = useRef(true);
   // UI variables
   const [usernameInputField, setUsernameInputField] = useState("");
-
+  const [loading, setLoading] = useState(false)
   // card carousel stuff
   const [card, setCard] = useState(null);
   const onCardChange = (event) => {
@@ -75,6 +75,7 @@ function App() {
   const fetchUser = (event) => {
     event.preventDefault();
     setUser(usernameInputField);
+    setLoading(true)
     console.log(`Account name entered was: ${usernameInputField}`);
     fetch(`/user/${usernameInputField}`)
       .then(
@@ -292,6 +293,18 @@ function App() {
       </div>
     );
     setSliderData((sliderData) => [...sliderData, ratingDiv]);
+
+    const mostViewedVideoDiv = (
+        <VideoPanel title = "MOST VIEWED VIDEO"></VideoPanel>
+    );
+    setSliderData((sliderData) => [...sliderData, mostViewedVideoDiv]);
+
+    const mostLikedVideoDiv = (
+      <VideoPanel title = "MOST LIKED VIDEO"></VideoPanel>
+    );
+    setSliderData((sliderData) => [...sliderData, mostLikedVideoDiv]);
+
+
     setInvisible(false);
   };
 
@@ -317,7 +330,16 @@ function App() {
       </div>
 
       {invisible ? (
-        <div style={{ display: "none" }}> notthere </div>
+        <div>
+          <div>set your tiktok likes to public</div>
+          <div>
+          {loading ? (
+            <div>loading...</div>
+          ) : (
+            <></>
+          )}
+          </div>
+        </div>
       ) : (
         <ImageSlider sliderData={sliderData} userData={userData} />
 
@@ -348,7 +370,7 @@ const carouselStyle = {};
 const bannerStyle = {
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
+  justifyContent: "center", 
   alignItems: "center",
   color: "red",
 };

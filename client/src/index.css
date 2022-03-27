@@ -483,3 +483,24 @@ body {
   0% { width: 0; }
   100% { width: auto; }
 }
+.video_panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.video_div {
+  background-color: white;
+  box-shadow: 1px 1px 5px #888888;
+  border-radius: 10px;
+  align-self: center;
+  display:flex;
+  flex-direction: column;
+  width: 80%;
+  margin-top: 15px;
+  margin: 15px;
+
+  padding: 10px;
+
+  height: 80%;
+}

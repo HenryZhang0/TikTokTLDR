@@ -29,7 +29,7 @@ def user(id):
         f = open('test.json')
         dat = json.load(f)
         return dat
-
+    id.replace("!", "")
     data = scrape(id) # calls scraper function with id parameter
     with open(id+'.json', 'w') as fp: # saves to cache
         json.dump(data, fp,  indent=4)

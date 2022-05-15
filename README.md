@@ -48,13 +48,14 @@ Everybody uses TikTok and we realized that analyzing what somebody likes on TikT
 
 ### Built With
 
-* [Python]
-* [React.js]
-* [Javascript]
-* [HTML]
-* [CSS]
-* [C]
-* [MongoDB]
+* Python
+* React.js
+* Javascript
+* HTML
+* CSS
+* C
+* MongoDB
+* [Cohere](https://cohere.ai/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -72,13 +73,13 @@ Everybody uses TikTok and we realized that analyzing what somebody likes on TikT
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/HenryZhang0/tokk.git
    ```
 3. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+4. Enter your API in `config.js` 
    ```js
    const API_KEY = 'ENTER YOUR API';
    ```

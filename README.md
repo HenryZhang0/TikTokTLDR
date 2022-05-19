@@ -2,7 +2,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-![image](https://raw.githubusercontent.com/HenryZhang0/tokk/main/client/src/logo.png)
+
+[![N|Solid](https://raw.githubusercontent.com/HenryZhang0/tokk/main/client/src/logo.png)]()
 
 <h3 align="center">TikTok TLDR</h3>
   <p align="center">

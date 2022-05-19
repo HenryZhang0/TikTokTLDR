@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-![logo](https://github.com/HenryZhang0/tokk/blob/main/client/src/logo.png?raw=true)
+![image](https://raw.githubusercontent.com/HenryZhang0/tokk/main/client/src/logo.png)
 
 <h3 align="center">TikTok TLDR</h3>
   <p align="center">
@@ -38,33 +38,35 @@
   </ol>
 </details>
 
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
+
 Everybody uses TikTok and we realized that analyzing what somebody likes on TikTok reveals a lot about themselves. We wanted to create a web app similar to Spotify Wrapped that displays the data in a visually appealing and easily digestible package.
 
 [![Youtube Demo](https://img.youtube.com/vi/52vKAO761o8&ab_channel=RyanHu/0.jpg)](https://www.youtube.com/watch?v=52vKAO761o8&ab_channel=RyanHu)
 
-
 ### Built With
 
-* Python
-* React.js
-* Javascript
-* HTML
-* CSS
-* C
-* MongoDB
-* Flask
-* [Cohere](https://cohere.ai/)
+- Python
+- React.js
+- Javascript
+- HTML
+- CSS
+- C
+- MongoDB
+- Flask
+- [Cohere](https://cohere.ai/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 ### Prerequisites
-* npm
+
+- npm
   ```sh
   npm install --save react-stacked-carousel
   ```
@@ -80,10 +82,11 @@ Everybody uses TikTok and we realized that analyzing what somebody likes on TikT
    ```sh
    npm install
    ```
-4. Enter your API in `config.js` 
+4. Enter your API in `config.js`
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   const API_KEY = "ENTER YOUR API";
    ```
+
 ### Quick Start
 
 Start backend
@@ -97,6 +100,7 @@ Start frontend
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -113,6 +117,7 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTACT -->
+
 ## Contact
 
 [Henry Zhang](https://www.linkedin.com/in/henryzhang0/) - y3739zha@uwaterloo.ca - [github](https://github.com/HenryZhang0)
@@ -124,10 +129,9 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
+
 ## Acknowledgments
 
-* [daveteather TikTok API wrapper](https://github.com/davidteather/TikTok-Api)
+- [daveteather TikTok API wrapper](https://github.com/davidteather/TikTok-Api)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-

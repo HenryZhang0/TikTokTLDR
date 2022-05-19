@@ -219,6 +219,7 @@ def scrape(id):
             straightScore += i.confidences[1].confidence
     '''
     #Generate scores based on hashtags 
+    '''
     straight_score = classify_hashtag(hashtags, "straight", "alt", straight_examples, alt_examples, amount = 100)
 
     data['straight_score'] = straight_score
@@ -231,7 +232,7 @@ def scrape(id):
     education_score = classify_hashtag(hashtags, "educational", "entertainment", educational_example, entertainment_example, amount = 100)
 
     data['education_score'] = education_score
-
+    ''' 
     # caching test users
     with open('test.json', 'w') as fp:
         json.dump(data, fp,  indent=4)

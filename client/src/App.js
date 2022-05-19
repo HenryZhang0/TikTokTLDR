@@ -41,7 +41,7 @@ function App() {
   // RUN ONCE
   useEffect(() => {
     isFirstRender.current = false;
-    fetch("http://172.105.102.62:8001/programmers")
+    fetch("https://172.105.102.62:8001/programmers")
       .then(
         // fetch programmers data
         (res) => res.json()
@@ -58,7 +58,7 @@ function App() {
       setUsernameInputField(shared)
       setUser(shared);
       console.log(`Account name entered was: ${shared}`);
-      fetch(`http://172.105.102.62:8001/user/${shared}`)
+      fetch(`https://172.105.102.62:8001/user/${shared}`)
       .then(
         // fetch userData
         (res) => res.json()
@@ -73,7 +73,7 @@ function App() {
   }, []);
 
   const fetchVideo = (id) => {
-    fetch(`http://172.105.102.62:8001/video/${id}`)
+    fetch(`https://172.105.102.62:8001/video/${id}`)
       .then(
         // fetch userData
         (res) => res.json()
@@ -89,7 +89,7 @@ function App() {
     setUser(usernameInputField);
     setLoading(true)
     console.log(`Account name entered was: ${usernameInputField}`);
-    fetch(`http://172.105.102.62:8001/user/${usernameInputField}`)
+    fetch(`https://172.105.102.62:8001/user/${usernameInputField}`)
       .then(
         // fetch userData
         (res) => res.json()
@@ -107,7 +107,7 @@ function App() {
     console.log("SOUND: ",index)
     let sound_id = userData.most_liked_sounds_id[index]
     
-    fetch(`http://172.105.102.62:8001/audio/${sound_id}`)
+    fetch(`https://172.105.102.62:8001/audio/${sound_id}`)
       .then(
         // fetch userData
         (res) => res.json()
@@ -127,7 +127,7 @@ function App() {
     console.log("Video: ",index)
     let video_id = userData.most_common_hashtags_videos[index]
     
-    fetch(`http://172.105.102.62:8001/video/${video_id}`)
+    fetch(`https://172.105.102.62:8001/video/${video_id}`)
       .then(
         // fetch userData
         (res) => res.json()

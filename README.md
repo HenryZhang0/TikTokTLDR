@@ -55,6 +55,7 @@ Everybody uses TikTok and we realized that analyzing what somebody likes on TikT
 * CSS
 * C
 * MongoDB
+* Flask
 * [Cohere](https://cohere.ai/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>

@@ -2,7 +2,7 @@
     <img src="https://i.imgur.com/88Gwvsz.png" alt="TikTokTLDR logo" title="TikTokTLDR" align="right" justify-content="center" height="60" />
 </a>
 
-# Aimeos TYPO3 extension
+# TikTokTLDR
 <div id="top"></div>
 <!-- PROJECT LOGO -->
 

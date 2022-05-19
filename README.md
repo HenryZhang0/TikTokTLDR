@@ -3,7 +3,7 @@
 <br />
 <div align="center">
 
-[![N|Solid](https://raw.githubusercontent.com/HenryZhang0/tokk/main/client/src/logo.png)]()
+<img src="https://raw.githubusercontent.com/HenryZhang0/tokk/main/client/src/logo.png" alt="drawing" width="500"/>
 
 <h3 align="center">TikTok TLDR</h3>
   <p align="center">

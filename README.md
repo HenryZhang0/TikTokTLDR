@@ -87,7 +87,8 @@ Everybody uses TikTok and we realized that analyzing what somebody likes on TikT
 ### Quick Start
 
 Start backend
-`py server`
+`cd backend`
+`py app.py`
 
 Start frontend
 `cd client`

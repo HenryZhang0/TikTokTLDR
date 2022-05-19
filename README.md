@@ -1,5 +1,5 @@
 <a href="https://henryzhang0.github.io/tokk/">
-    <img src="https://raw.githubusercontent.com/HenryZhang0/tokk/main/client/src/logo.png" alt="TikTokTLDR logo" title="TikTokTLDR" align="right" height="60" />
+    <img src="https://i.imgur.com/88Gwvsz.png" alt="TikTokTLDR logo" title="TikTokTLDR" align="right" height="40" />
 </a>
 
 # Aimeos TYPO3 extension

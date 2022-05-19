@@ -44,7 +44,7 @@
 
 Everybody uses TikTok and we realized that analyzing what somebody likes on TikTok reveals a lot about themselves. We wanted to create a web app similar to Spotify Wrapped that displays the data in a visually appealing and easily digestible package.
 
-[![Youtube Demo](https://img.youtube.com/vi/52vKAO761o8&ab_channel=RyanHu/0.jpg)](https://www.youtube.com/watch?v=52vKAO761o8&ab_channel=RyanHu)
+[![Youtube Demo](https://imgur.com/a/eeg0P8I)](https://www.youtube.com/watch?v=52vKAO761o8&ab_channel=RyanHu)
 
 ### Built With
 

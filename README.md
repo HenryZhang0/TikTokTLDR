@@ -50,7 +50,9 @@
 
 Everybody uses TikTok and we realized that analyzing what somebody likes on TikTok reveals a lot about themselves. We wanted to create a web app similar to Spotify Wrapped that displays the data in a visually appealing and easily digestible package.
 
-[![52vKAO761o8-HD](https://user-images.githubusercontent.com/92134792/169413680-47e7d741-9904-4201-9d79-b65677d12526.jpg)](https://www.youtube.com/watch?v=52vKAO761o8&ab_channel=RyanHu)
+
+To see our project in action, watch a quick demo on YouTube!
+[![YouTube Demo](https://user-images.githubusercontent.com/92134792/169413680-47e7d741-9904-4201-9d79-b65677d12526.jpg)](https://www.youtube.com/watch?v=52vKAO761o8&ab_channel=RyanHu)
 
 
 ### Built With
@@ -65,13 +67,15 @@ Everybody uses TikTok and we realized that analyzing what somebody likes on TikT
 - Flask
 - [Cohere](https://cohere.ai/)
 
-### Gallery
 
-![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/885/249/datas/original.png)
-![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/885/250/datas/original.png)
-![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/885/267/datas/original.png)
-![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/885/277/datas/original.png)
-![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/885/306/datas/original.png)
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+<!-- GALLERY -->
+
+## Gallery
+
+<img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/885/249/datas/original.png" width="45%"></img> <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/885/267/datas/original.png" width="45%"></img> <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/885/250/datas/original.png" width="45%"></img> <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/885/277/datas/original.png" width="45%"></img> <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/885/306/datas/original.png" width="45%"></img> 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

@@ -28,7 +28,7 @@ Everybody uses TikTok and we realized that analyzing what somebody likes on TikT
 
 
 To see our project in action, watch a quick demo on YouTube!
-[![YouTube Demo](https://user-images.githubusercontent.com/92134792/169413680-47e7d741-9904-4201-9d79-b65677d12526.jpg)](https://www.youtube.com/watch?v=52vKAO761o8&ab_channel=RyanHu)
+[![YouTube Demo](https://user-images.githubusercontent.com/92134792/169654930-86893442-06a4-4c9f-9371-730a79b39aaf.jpg)](https://www.youtube.com/watch?v=52vKAO761o8&ab_channel=RyanHu)
 
 
 ### Built With

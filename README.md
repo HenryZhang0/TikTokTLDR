@@ -117,7 +117,7 @@ Don't forget to give the project a star! Thanks again!
 
 [Henry Zhang](https://www.linkedin.com/in/henryzhang0/) - y3739zha@uwaterloo.ca - [github](https://github.com/HenryZhang0)
 
-[Ryan Hu](https://www.linkedin.com/in/ryannhu/) - email@email_client.com - [github](https://github.com/ryannhu)
+[Ryan Hu](https://www.linkedin.com/in/ryannhu/) - r54hu@uwaterloo.ca - [github](https://github.com/ryannhu)
 
 [Angela Law](https://www.linkedin.com/in/angela-law-01267b188/) - angelaw1459@gmail.com - [github](https://github.com/torotuna)
 
